@@ -16,9 +16,11 @@
 	<div class="bg-base-100 relative mx-auto h-screen max-w-sm overflow-scroll">
 		{@render children()}
 		{#if $me.auth}
+			<!-- Blank space to prevent navbar from blocking content -->
+			<div class="h-16"></div>
 			<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 			<nav
-				class="border-base-300 absolute right-0 bottom-0 left-0 flex h-16 items-center justify-around gap-x-2 border-t p-2"
+				class="border-base-300 absolute right-0 bottom-0 left-0 flex h-15 items-center justify-around gap-x-2 border-t p-2"
 				role="tablist"
 			>
 				<NavTab Icon={IconHome} path="">Home</NavTab>
