@@ -4,4 +4,8 @@
 	let { children } = $props();
 </script>
 
-{@render children()}
+<div class="bg-black">
+	<div class="mx-auto h-screen max-w-sm overflow-scroll bg-white">
+		{@render children()}
+	</div>
+</div>
