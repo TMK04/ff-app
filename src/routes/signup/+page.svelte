@@ -2,6 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import type { MouseEventHandler } from 'svelte/elements';
+	import IconGoogleIcon from '~icons/logos/google-icon';
+	import IconApple from '~icons/logos/apple';
 
 	const onclick: MouseEventHandler<HTMLButtonElement> = async function (ev) {
 		ev.preventDefault();
@@ -34,12 +36,11 @@
 
 		<section class="flex flex-wrap gap-2">
 			<!-- TODO: oauth -->
-			<!-- TODO: icons -->
-			<button class="btn grow bg-gray-200 text-black" type="button" {onclick}
-				>Continue with Google</button
+			<button class="btn grow bg-gray-200 text-black" type="button" {onclick}>
+				<IconGoogleIcon />Continue with Google</button
 			>
-			<button class="btn grow bg-gray-200 text-black" type="button" {onclick}
-				>Continue with Apple</button
+			<button class="btn grow bg-gray-200 text-black" type="button" {onclick}>
+				<IconApple />Continue with Apple</button
 			>
 		</section>
 	</main>
