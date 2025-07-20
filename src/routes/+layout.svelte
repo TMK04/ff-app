@@ -12,13 +12,13 @@
 	let { children } = $props();
 </script>
 
-<div class="bg-black">
-	<div class="relative mx-auto h-screen max-w-sm overflow-scroll bg-white">
+<div class="bg-neutral">
+	<div class="bg-base-100 relative mx-auto h-screen max-w-sm overflow-scroll">
 		{@render children()}
 		{#if $me.auth}
 			<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 			<nav
-				class="absolute right-0 bottom-0 left-0 flex h-16 items-center justify-around gap-x-2 border-t border-gray-400 p-2"
+				class="border-base-300 absolute right-0 bottom-0 left-0 flex h-16 items-center justify-around gap-x-2 border-t p-2"
 				role="tablist"
 			>
 				<NavTab Icon={IconHome} path="">Home</NavTab>

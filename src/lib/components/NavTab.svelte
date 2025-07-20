@@ -19,7 +19,7 @@
 	role="tab"
 	class={[
 		'flex grow basis-0 flex-wrap items-center justify-center',
-		{ 'font-bold': active, 'text-gray-500': !active }
+		{ 'font-bold': active, 'text-base-content/60': !active }
 	]}
 	{href}
 >

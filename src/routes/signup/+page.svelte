@@ -49,19 +49,19 @@
 			<button class="btn btn-neutral w-full" type="submit" {onclick}>Continue</button>
 		</form>
 
-		<div class="divider my-8 text-gray-400">or</div>
+		<div class="divider text-base-content/50 my-8">or</div>
 
 		<section class="flex flex-wrap gap-2">
 			<!-- TODO: oauth -->
-			<button class="btn grow bg-gray-200 text-black" type="button" {onclick}>
+			<button class="btn text-base-content bg-base-200 grow" type="button" {onclick}>
 				<IconGoogleIcon />Continue with Google</button
 			>
-			<button class="btn grow bg-gray-200 text-black" type="button" {onclick}>
+			<button class="btn text-base-content bg-base-200 grow" type="button" {onclick}>
 				<IconApple />Continue with Apple</button
 			>
 		</section>
 	</main>
-	<footer class="text-sm text-gray-400">
+	<footer class="text-base-content/50 text-sm">
 		By clicking continue, you agree to our
 		<a class="link-neutral link-hover font-bold" href={`${base}/tos`}>Terms of Service</a>
 		and
