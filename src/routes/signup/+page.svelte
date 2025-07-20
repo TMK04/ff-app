@@ -28,8 +28,8 @@
 	};
 </script>
 
-<div class="mx-8 flex min-h-full flex-col justify-center gap-y-6 text-center">
-	<header class="font-cursive my-2 text-4xl">Fashion Forward</header>
+<div class="mx-8 mt-12 mb-16 flex grow flex-col justify-center gap-y-6 text-center">
+	<header class="font-cursive mb-4 text-5xl">Fashion Forward</header>
 	<main>
 		<form>
 			<label class="mb-4 block">

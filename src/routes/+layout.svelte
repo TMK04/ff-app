@@ -13,7 +13,7 @@
 </script>
 
 <div class="bg-neutral">
-	<div class="bg-base-100 relative mx-auto h-screen max-w-sm overflow-scroll">
+	<div class="bg-base-100 relative mx-auto flex h-screen max-w-sm flex-col overflow-scroll">
 		{@render children()}
 		{#if $me.auth}
 			<!-- Blank space to prevent navbar from blocking content -->
