@@ -4,10 +4,27 @@
 	import type { MouseEventHandler } from 'svelte/elements';
 	import IconGoogleIcon from '~icons/logos/google-icon';
 	import IconApple from '~icons/logos/apple';
+	import { me } from '$lib/stores/me';
+
+	$effect(function () {
+		(async function () {
+			try {
+				if ($me.auth) {
+					goto(`${base}/`);
+				}
+			} catch (e) {
+				console.error('/signup/+page.svelte $effect`)', e);
+			}
+		})();
+	});
 
 	const onclick: MouseEventHandler<HTMLButtonElement> = async function (ev) {
-		ev.preventDefault();
-		await goto(`${base}/`);
+		try {
+			ev.preventDefault();
+			$me.auth = true;
+		} catch (e) {
+			console.error('/signup/+page.svelte onclick', e);
+		}
 	};
 </script>
 
