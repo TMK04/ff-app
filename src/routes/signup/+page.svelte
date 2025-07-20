@@ -63,8 +63,8 @@
 	</main>
 	<footer class="text-sm text-gray-400">
 		By clicking continue, you agree to our
-		<a class="font-bold text-gray-800" href={`${base}/tos`}>Terms of Service</a>
+		<a class="link-neutral link-hover font-bold" href={`${base}/tos`}>Terms of Service</a>
 		and
-		<a class="font-bold text-gray-800" href={`${base}/privacy`}>Privacy Policy</a>
+		<a class="link-neutral link-hover font-bold" href={`${base}/privacy`}>Privacy Policy</a>
 	</footer>
 </div>
