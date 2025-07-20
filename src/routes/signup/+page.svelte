@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import type { MouseEventHandler } from 'svelte/elements';
 
-	async function onclick() {
-		goto(`/${base}`);
-	}
+	const onclick: MouseEventHandler<HTMLButtonElement> = async function (ev) {
+		ev.preventDefault();
+		await goto(`${base}/`);
+	};
 </script>
 
 <div class="mx-8 flex min-h-full flex-col justify-center gap-y-6 text-center">
@@ -42,7 +44,6 @@
 		</section>
 	</main>
 	<footer class="text-sm text-gray-400">
-		<!-- TODO: design /tos & /privacy -->
 		By clicking continue, you agree to our
 		<a class="font-bold text-gray-800" href={`${base}/tos`}>Terms of Service</a>
 		and
