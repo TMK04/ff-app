@@ -12,6 +12,10 @@
 	let { children } = $props();
 </script>
 
+<svelte:head>
+	<title>Fashion Forward</title>
+</svelte:head>
+
 <div class="bg-neutral">
 	<div class="bg-base-100 relative mx-auto flex h-screen max-w-sm flex-col overflow-scroll">
 		{@render children()}
