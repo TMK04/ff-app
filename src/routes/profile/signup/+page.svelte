@@ -6,29 +6,18 @@
 	import IconApple from '~icons/logos/apple';
 	import { me } from '$lib/stores/me';
 
-	$effect(function () {
-		(async function () {
-			try {
-				if ($me.auth) {
-					goto(`${base}/`);
-				}
-			} catch (e) {
-				console.error('/signup/+page.svelte $effect`)', e);
-			}
-		})();
-	});
-
 	const onclick: MouseEventHandler<HTMLButtonElement> = async function (ev) {
 		try {
 			ev.preventDefault();
 			$me.auth = true;
+			await goto(`${base}/`);
 		} catch (e) {
-			console.error('/signup/+page.svelte onclick', e);
+			console.error('/profile/signup/+page.svelte onclick', e);
 		}
 	};
 </script>
 
-<div class="mx-8 mt-12 mb-16 flex grow flex-col justify-center gap-y-6 text-center">
+<div class="mx-8 my-12 flex grow flex-col justify-center gap-y-6 text-center">
 	<header class="font-cursive mb-4 text-5xl">Fashion Forward</header>
 	<main>
 		<form>
