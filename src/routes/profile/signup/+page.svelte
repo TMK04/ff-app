@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div class="mx-8 my-12 flex grow flex-col justify-center gap-y-6 text-center">
+<div class="mx-8 mt-12 flex grow flex-col justify-center gap-y-6 text-center">
 	<header class="font-cursive mb-4 text-5xl">Fashion Forward</header>
 	<main>
 		<form>

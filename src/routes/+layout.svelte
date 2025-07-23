@@ -18,13 +18,13 @@
 </svelte:head>
 
 <div class="bg-neutral">
-	<div class="bg-base-100 relative mx-auto flex h-dvh max-w-sm flex-col overflow-scroll">
-		{@render children()}
-		<!-- Blank space to prevent navbar from blocking content -->
-		<div class="h-16"></div>
+	<div class="bg-base-100 mx-auto flex h-dvh max-w-sm flex-col">
+		<div class="flex h-0 grow flex-col overflow-scroll pb-8">
+			{@render children()}
+		</div>
 		<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 		<nav
-			class="border-base-300 absolute right-0 bottom-0 left-0 flex h-15 items-center justify-around gap-x-2 border-t p-2"
+			class="border-base-300 flex h-15 items-center justify-around gap-x-2 border-t p-2"
 			role="tablist"
 		>
 			<NavTab Icon={IconHome} path="">Home</NavTab>
