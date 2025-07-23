@@ -12,7 +12,7 @@
 	const { Icon, children, path }: TProps = $props();
 
 	const href = $derived(`${base}/${path}`);
-	const active = $derived(page.url.pathname === href);
+	const active = $derived(RegExp(`^${href}(/.*|$)`).test(page.url.pathname));
 </script>
 
 <a
