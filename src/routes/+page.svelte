@@ -5,18 +5,20 @@
 	import Search from '$lib/components/Search.svelte';
 </script>
 
-<div class="m-3">
-	<Search />
-	<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
-	<nav class="mb-3" role="tablist">
-		<button class="btn btn-outline btn-sm border-base-300" type="button">
-			<IconHistory /> History
-		</button>
-		<button class="btn btn-outline btn-sm border-base-300" type="button">
-			<IconListBoxOutline /> Pending Exchanges
-		</button>
-	</nav>
-	<article class="relative mb-4">
+<div class="m-3 flex flex-col gap-y-4">
+	<header class="flex flex-col gap-y-2">
+		<Search />
+		<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
+		<nav role="tablist">
+			<button class="btn btn-outline btn-sm border-base-300" type="button">
+				<IconHistory /> History
+			</button>
+			<button class="btn btn-outline btn-sm border-base-300" type="button">
+				<IconListBoxOutline /> Pending Exchanges
+			</button>
+		</nav>
+	</header>
+	<section class="relative">
 		<div class="carousel rounded-lg">
 			<div id="item1" class="carousel-item w-full">
 				<img
@@ -53,11 +55,23 @@
 			<a href="#item3" class="text-base-100">⋅</a>
 			<a href="#item4" class="text-base-100">⋅</a>
 		</fieldset>
-	</article>
-	<article>
+	</section>
+	<section>
 		<h1 class="flex items-center gap-x-1 font-bold">
-			<span>Title</span>
+			Past Competitions
 			<IconChevronRightCircle class="inline align-middle" />
 		</h1>
-	</article>
+	</section>
+	<section>
+		<h1 class="flex items-center gap-x-1 font-bold">
+			Our Partners
+			<IconChevronRightCircle class="inline align-middle" />
+		</h1>
+	</section>
+	<section>
+		<h1 class="flex items-center gap-x-1 font-bold">
+			About Us
+			<IconChevronRightCircle class="inline align-middle" />
+		</h1>
+	</section>
 </div>
