@@ -9,7 +9,7 @@
 		path: string;
 	};
 
-	const { Icon, children, path } = $props();
+	const { Icon, children, path }: TProps = $props();
 
 	const href = $derived(`${base}/${path}`);
 	const active = $derived(page.url.pathname === href);
