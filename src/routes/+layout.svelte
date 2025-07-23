@@ -18,7 +18,7 @@
 </svelte:head>
 
 <div class="bg-neutral">
-	<div class="bg-base-100 relative mx-auto flex h-screen max-w-sm flex-col overflow-scroll">
+	<div class="bg-base-100 relative mx-auto flex h-dvh max-w-sm flex-col overflow-scroll">
 		{@render children()}
 		<!-- Blank space to prevent navbar from blocking content -->
 		<div class="h-16"></div>
