@@ -1,2 +1,6 @@
 <!-- TODO -->
-Privacy Policy
+<script lang="ts">
+	import Header from '$lib/components/Header.svelte';
+</script>
+
+<Header>Privacy Policy</Header>

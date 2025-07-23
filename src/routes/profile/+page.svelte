@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import Header from '$lib/components/Header.svelte';
 	import Logout from '$lib/components/Logout.svelte';
 	import { me } from '$lib/stores/me';
 
@@ -16,5 +17,7 @@
 		}
 	});
 </script>
+
+<Header>Profile</Header>
 
 <Logout />
