@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
+	import TopNav from '$lib/components/TopNav.svelte';
 </script>
 
-<Header>Sustainability Fashion Challenge</Header>
+<TopNav>Sustainability Fashion Challenge</TopNav>

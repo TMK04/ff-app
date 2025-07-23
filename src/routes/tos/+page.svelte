@@ -1,6 +1,6 @@
 <!-- TODO -->
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
+	import TopNav from '$lib/components/TopNav.svelte';
 </script>
 
-<Header>Terms of Service</Header>
+<TopNav>Terms of Service</TopNav>
