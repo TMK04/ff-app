@@ -58,10 +58,10 @@
 		</fieldset>
 	</section>
 	<section class="flex flex-col gap-y-2">
-		<h1 class="flex items-center gap-x-1 font-bold">
+		<h2 class="flex items-center gap-x-1 font-bold">
 			Past Competitions
 			<IconChevronRightCircle class="inline align-middle" />
-		</h1>
+		</h2>
 		<article class="flex gap-x-4 overflow-x-scroll">
 			{#each { length: 10 }}
 				<figure>
@@ -71,10 +71,10 @@
 		</article>
 	</section>
 	<section class="flex flex-col gap-y-2">
-		<h1 class="flex items-center gap-x-1 font-bold">
+		<h2 class="flex items-center gap-x-1 font-bold">
 			Our Partners
 			<IconChevronRightCircle class="inline align-middle" />
-		</h1>
+		</h2>
 		<article class="flex gap-x-4 overflow-x-scroll">
 			{#each { length: 10 }}
 				<figure>
@@ -84,10 +84,10 @@
 		</article>
 	</section>
 	<section class="flex flex-col gap-y-2">
-		<h1 class="flex items-center gap-x-1 font-bold">
+		<h2 class="flex items-center gap-x-1 font-bold">
 			About Us
 			<IconChevronRightCircle class="inline align-middle" />
-		</h1>
+		</h2>
 		<figure>
 			<div class="skeleton h-24 rounded"></div>
 		</figure>

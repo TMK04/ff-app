@@ -20,12 +20,12 @@
 </script>
 
 <div class="mx-8 mt-12 flex grow flex-col justify-center gap-y-6 text-center">
-	<header class="font-cursive mb-4 text-5xl">Fashion Forward</header>
+	<h1 class="font-cursive mb-4 text-5xl">Fashion Forward</h1>
 	<main>
 		<form>
 			<label class="mb-4 block">
 				<header class="mb-6">
-					<h1 class="text-large font-bold">Create an account</h1>
+					<h2 class="text-large font-bold">Create an account</h2>
 					<p>Enter your email to sign up for this app</p>
 				</header>
 				<input
