@@ -18,7 +18,7 @@
 <a
 	role="tab"
 	class={[
-		'flex grow basis-0 flex-wrap items-center justify-center',
+		'flex flex-col items-center justify-center',
 		{ 'font-bold': active, 'text-base-content/60': !active }
 	]}
 	{href}

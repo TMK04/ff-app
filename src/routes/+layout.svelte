@@ -24,7 +24,7 @@
 		</div>
 		<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 		<nav
-			class="border-base-300 flex h-15 items-center justify-around gap-x-2 border-t p-2"
+			class="border-base-300 grid h-15 auto-cols-fr grid-flow-col grid-rows-1 gap-x-2 border-t p-2"
 			role="tablist"
 		>
 			<NavTab Icon={IconHome} path="">Home</NavTab>
