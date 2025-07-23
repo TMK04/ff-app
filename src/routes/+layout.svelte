@@ -6,8 +6,8 @@
 	import IconHome from '~icons/mdi/home';
 	import IconLightbulbOnOutline from '~icons/mdi/lightbulb-on-outline';
 
-	import { me } from '$lib/stores/me';
 	import NavTab from '$lib/components/NavTab.svelte';
+	import { me } from '$lib/stores/me';
 	import '../app.css';
 
 	let { children } = $props();

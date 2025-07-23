@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { MouseEventHandler } from 'svelte/elements';
 	import IconChevronLeft from '~icons/mdi/chevron-left';
+
+	import type { MouseEventHandler } from 'svelte/elements';
 
 	const onclick: MouseEventHandler<HTMLButtonElement> = async function () {
 		try {

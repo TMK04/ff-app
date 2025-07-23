@@ -2,6 +2,7 @@
 	import IconChevronRightCircle from '~icons/mdi/chevron-right-circle';
 	import IconHistory from '~icons/mdi/history';
 	import IconListBoxOutline from '~icons/mdi/list-box-outline';
+
 	import Search from '$lib/components/Search.svelte';
 </script>
 
@@ -22,38 +23,38 @@
 		<div class="carousel rounded-lg">
 			<div id="item1" class="carousel-item w-full">
 				<img
+					class="w-full"
 					alt="1"
 					src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-					class="w-full"
 				/>
 			</div>
 			<div id="item2" class="carousel-item w-full">
 				<img
+					class="w-full"
 					alt="2"
 					src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-					class="w-full"
 				/>
 			</div>
 			<div id="item3" class="carousel-item w-full">
 				<img
+					class="w-full"
 					alt="3"
 					src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-					class="w-full"
 				/>
 			</div>
 			<div id="item4" class="carousel-item w-full">
 				<img
+					class="w-full"
 					alt="4"
 					src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-					class="w-full"
 				/>
 			</div>
 		</div>
 		<fieldset class="absolute right-0 bottom-1 left-0 mx-auto w-max">
-			<a href="#item1" class="text-base-100">⋅</a>
-			<a href="#item2" class="text-base-100">⋅</a>
-			<a href="#item3" class="text-base-100">⋅</a>
-			<a href="#item4" class="text-base-100">⋅</a>
+			<a class="text-base-100" href="#item1">⋅</a>
+			<a class="text-base-100" href="#item2">⋅</a>
+			<a class="text-base-100" href="#item3">⋅</a>
+			<a class="text-base-100" href="#item4">⋅</a>
 		</fieldset>
 	</section>
 	<section class="flex flex-col gap-y-2">
@@ -62,7 +63,7 @@
 			<IconChevronRightCircle class="inline align-middle" />
 		</h1>
 		<article class="flex gap-x-4 overflow-x-scroll">
-			{#each { length: 10 }, _}
+			{#each { length: 10 }}
 				<figure>
 					<div class="skeleton h-24 w-24 rounded"></div>
 				</figure>
@@ -75,7 +76,7 @@
 			<IconChevronRightCircle class="inline align-middle" />
 		</h1>
 		<article class="flex gap-x-4 overflow-x-scroll">
-			{#each { length: 10 }, _}
+			{#each { length: 10 }}
 				<figure>
 					<div class="skeleton h-16 w-16 rounded-full"></div>
 				</figure>

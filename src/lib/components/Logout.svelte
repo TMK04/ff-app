@@ -2,6 +2,7 @@
 	import IconAccountLock from '~icons/mdi/account-lock';
 
 	import type { MouseEventHandler } from 'svelte/elements';
+
 	import { me } from '$lib/stores/me';
 
 	// TODO
@@ -15,7 +16,7 @@
 	};
 </script>
 
-<button class="btn btn-neutral" type="button" {onclick}>
+<button class="btn btn-neutral" {onclick} type="button">
 	<IconAccountLock />
 	Logout
 </button>

@@ -1,7 +1,8 @@
 <script lang="ts">
+	import type { Component, Snippet } from 'svelte';
+
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
-	import type { Component, Snippet } from 'svelte';
 
 	type TProps = {
 		Icon: Component;
@@ -16,12 +17,12 @@
 </script>
 
 <a
-	role="tab"
 	class={[
 		'flex flex-col items-center justify-center',
 		{ 'font-bold': active, 'text-base-content/60': !active }
 	]}
 	{href}
+	role="tab"
 >
 	<Icon class="basis-full" />
 	{@render children()}

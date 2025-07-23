@@ -1,9 +1,11 @@
 <script lang="ts">
+	import IconApple from '~icons/logos/apple';
+	import IconGoogleIcon from '~icons/logos/google-icon';
+
+	import type { MouseEventHandler } from 'svelte/elements';
+
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import type { MouseEventHandler } from 'svelte/elements';
-	import IconGoogleIcon from '~icons/logos/google-icon';
-	import IconApple from '~icons/logos/apple';
 	import { me } from '$lib/stores/me';
 
 	const onclick: MouseEventHandler<HTMLButtonElement> = async function (ev) {
@@ -27,25 +29,25 @@
 					<p>Enter your email to sign up for this app</p>
 				</header>
 				<input
-					class="input w-full"
 					name="email"
+					class="input w-full"
 					autocomplete="email webauthn"
 					placeholder="email@domain.com"
 					type="email"
 				/>
 			</label>
 			<!-- TODO: auth -->
-			<button class="btn btn-neutral w-full" type="submit" {onclick}>Continue</button>
+			<button class="btn btn-neutral w-full" {onclick} type="submit">Continue</button>
 		</form>
 
 		<div class="divider text-base-content/50 my-8">or</div>
 
 		<section class="flex flex-wrap gap-2">
 			<!-- TODO: oauth -->
-			<button class="btn text-base-content bg-base-200 grow" type="button" {onclick}>
+			<button class="btn text-base-content bg-base-200 grow" {onclick} type="button">
 				<IconGoogleIcon />Continue with Google</button
 			>
-			<button class="btn text-base-content bg-base-200 grow" type="button" {onclick}>
+			<button class="btn text-base-content bg-base-200 grow" {onclick} type="button">
 				<IconApple />Continue with Apple</button
 			>
 		</section>
