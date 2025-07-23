@@ -8,21 +8,20 @@
 </script>
 
 <main class="m-3 flex flex-col gap-y-4">
-	<header class="flex flex-col gap-y-2">
+	<nav class="flex flex-col gap-y-2">
 		<div class="me-3 flex items-center gap-x-2">
 			<Back class="h-6" />
 			<Search />
 		</div>
-		<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
-		<nav role="tablist">
+		<ul role="tablist">
 			<button class="btn btn-outline btn-sm border-base-300" type="button">
 				<IconHistory /> History
 			</button>
 			<button class="btn btn-outline btn-sm border-base-300" type="button">
 				<IconListBoxOutline /> Pending Exchanges
 			</button>
-		</nav>
-	</header>
+		</ul>
+	</nav>
 	<section class="relative">
 		<div class="carousel rounded-lg">
 			<div id="item1" class="carousel-item w-full">
