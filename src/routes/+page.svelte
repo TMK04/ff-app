@@ -3,12 +3,16 @@
 	import IconHistory from '~icons/mdi/history';
 	import IconListBoxOutline from '~icons/mdi/list-box-outline';
 
+	import Back from '$lib/components/Back.svelte';
 	import Search from '$lib/components/Search.svelte';
 </script>
 
-<div class="m-3 flex flex-col gap-y-4">
+<main class="m-3 flex flex-col gap-y-4">
 	<header class="flex flex-col gap-y-2">
-		<Search />
+		<div class="me-3 flex items-center gap-x-2">
+			<Back class="h-6" />
+			<Search />
+		</div>
 		<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 		<nav role="tablist">
 			<button class="btn btn-outline btn-sm border-base-300" type="button">
@@ -92,4 +96,4 @@
 			<div class="skeleton h-24 rounded"></div>
 		</figure>
 	</section>
-</div>
+</main>

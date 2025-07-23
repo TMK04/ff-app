@@ -2,7 +2,7 @@
 	import IconMagnify from '~icons/mdi/magnify';
 </script>
 
-<label class="input bg-base-200 border-base-300 mx-3">
+<label class="input bg-base-200 border-base-300">
 	<IconMagnify class="text-base-content/60 [:focus-within>&]:text-base-content text-xl" />
 	<input class="grow" placeholder="Search" type="search" />
 </label>
