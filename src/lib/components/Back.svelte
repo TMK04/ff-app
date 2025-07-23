@@ -1,7 +1,13 @@
 <script lang="ts">
 	import IconChevronLeft from '~icons/mdi/chevron-left';
 
-	import type { MouseEventHandler } from 'svelte/elements';
+	import type { ClassValue, MouseEventHandler } from 'svelte/elements';
+
+	type TProps = {
+		class?: ClassValue;
+	};
+
+	const { class: _class = '' }: TProps = $props();
 
 	const onclick: MouseEventHandler<HTMLButtonElement> = async function () {
 		try {
@@ -12,6 +18,6 @@
 	};
 </script>
 
-<button class="btn btn-ghost h-full w-full px-0" {onclick}>
-	<IconChevronLeft class="aspect-square" height="100%" width="100%" />
+<button class={['btn btn-ghost px-0', _class]} {onclick}>
+	<IconChevronLeft height="100%" width="100%" />
 </button>
