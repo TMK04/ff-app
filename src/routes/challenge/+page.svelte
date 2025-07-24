@@ -20,7 +20,7 @@
 	<h3 class="divider mt-12 mb-1 text-lg font-bold underline">Vote</h3>
 	<aside class="custom--hearts">
 		<figure
-			class="bg-base-100/90 flex max-h-full flex-wrap-reverse justify-center gap-1.5 py-4 text-sm"
+			class="bg-base-100/90 pointer-events-auto flex max-h-full flex-wrap-reverse justify-center gap-1.5 py-4 text-sm"
 		>
 			<figcaption class="grow text-end transition-[flex-grow]">1 of 3 hearts used</figcaption>
 			<span class="stroke-neutral flex w-max justify-center transition-[width]">
@@ -41,7 +41,7 @@
 	@reference "tailwindcss";
 
 	.custom--hearts {
-		@apply sticky top-0 mb-6 h-[4.75rem] w-full;
+		@apply pointer-events-none sticky top-0 mb-6 h-[4.75rem] w-full;
 		container-type: scroll-state;
 
 		@supports (container-type: scroll-state) {
