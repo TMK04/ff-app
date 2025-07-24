@@ -31,7 +31,7 @@
 		<label class="flex items-center font-bold">
 			<input name="like" class="hidden" type="checkbox" />
 			<IconHeart
-				class="stroke-neutral text-neutral-content me-1 stroke-2 transition-colors [:checked+&]:text-red-500"
+				class="stroke-neutral text-base-100 me-1 stroke-2 transition-colors [:checked+&]:text-red-500"
 			/>
 			<span
 				class={[
