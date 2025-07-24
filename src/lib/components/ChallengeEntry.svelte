@@ -9,7 +9,7 @@
 		<div class="skeleton h-12 w-12 rounded-full"></div>
 		<section class="grow">
 			<h1 class="font-bold">Daniel</h1>
-			<span class="text-sm">3mins ago</span>
+			<span class="text-base-content/60 text-sm">3mins ago</span>
 		</section>
 		<button class="btn btn-ghost" type="button"><IconDotsHorizontal /></button>
 	</header>
