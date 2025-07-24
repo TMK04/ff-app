@@ -35,7 +35,7 @@
 			/>
 			<span
 				class={[
-					'me-0.5 inline-block h-lh',
+					'me-0.75 inline-block h-lh',
 					{ 'skeleton w-[2ch]': typeof like_count === 'undefined' }
 				]}
 			>
@@ -47,7 +47,7 @@
 			<IconCommentMultipleOutline class="me-1" />
 			<span
 				class={[
-					'me-0.5 inline-block h-lh',
+					'me-0.75 inline-block h-lh',
 					{ 'skeleton w-[2ch]': typeof comment_count === 'undefined' }
 				]}
 			>
