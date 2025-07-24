@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IconHeart from '~icons/mdi/heart';
 
+	import { base } from '$app/paths';
 	import ChallengeEntry from '$lib/components/ChallengeEntry.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 </script>
@@ -14,7 +15,7 @@
 	<p class="mb-6 text-center">
 		This Month's Prize: $100 Levi's Gift Card<br />There will be 1 winner for every 250 participants
 	</p>
-	<button class="btn btn-primary mx-auto w-max">Sign Up</button>
+	<a class="btn btn-primary mx-auto w-max" href={`${base}/challenge/signup`}>Sign Up</a>
 </header>
 <main class="mx-6 flex flex-col items-center">
 	<h3 class="divider mt-12 mb-1 text-lg font-bold underline">Vote</h3>
