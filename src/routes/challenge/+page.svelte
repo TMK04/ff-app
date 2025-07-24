@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IconHeart from '~icons/mdi/heart';
 
+	import ChallengeEntry from '$lib/components/ChallengeEntry.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 </script>
 
@@ -29,7 +30,11 @@
 			</span>
 		</figure>
 	</aside>
-	<article></article>
+	<ol class="flex w-full flex-wrap gap-8">
+		{#each { length: 10 }}
+			<ChallengeEntry />
+		{/each}
+	</ol>
 </main>
 
 <style lang="postcss">
