@@ -33,7 +33,7 @@
 	</aside>
 	<ol class="flex w-full flex-wrap gap-8">
 		{#each { length: 10 }}
-			<ChallengeEntry />
+			<ChallengeEntry comment_count={4} like_count={21} posted_ago="3mins ago" username="Daniel" />
 		{/each}
 	</ol>
 </main>
