@@ -3,24 +3,19 @@
 	import IconHistory from '~icons/mdi/history';
 	import IconListBoxOutline from '~icons/mdi/list-box-outline';
 
-	import Back from '$lib/components/Back.svelte';
-	import Search from '$lib/components/Search.svelte';
+	import TopSearch from '$lib/components/TopSearch.svelte';
 </script>
 
-<main class="m-3 flex flex-col gap-y-4">
-	<nav class="flex flex-col gap-y-2">
-		<div class="me-3 flex items-center gap-x-2">
-			<Back class="h-6" />
-			<Search />
-		</div>
-		<ul role="tablist">
-			<button class="btn btn-outline btn-sm border-base-300" type="button">
-				<IconHistory /> History
-			</button>
-			<button class="btn btn-outline btn-sm border-base-300" type="button">
-				<IconListBoxOutline /> Pending Exchanges
-			</button>
-		</ul>
+<TopSearch />
+<main class="mx-3 flex flex-col gap-y-4">
+	<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
+	<nav role="tablist">
+		<button class="btn btn-outline btn-sm border-base-300" type="button">
+			<IconHistory /> History
+		</button>
+		<button class="btn btn-outline btn-sm border-base-300" type="button">
+			<IconListBoxOutline /> Pending Exchanges
+		</button>
 	</nav>
 	<section class="relative">
 		<div class="carousel rounded-lg">
