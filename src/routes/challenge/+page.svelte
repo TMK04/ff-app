@@ -42,7 +42,7 @@
 	@reference "tailwindcss";
 
 	.custom--hearts {
-		@apply pointer-events-none sticky top-0 mb-6 h-[4.75rem] w-full;
+		@apply pointer-events-none sticky top-0 h-[4.75rem] w-full;
 		container-type: scroll-state;
 
 		@supports (container-type: scroll-state) {
