@@ -3,19 +3,22 @@
 	import IconDotsHorizontal from '~icons/mdi/dots-horizontal';
 	import IconHeart from '~icons/mdi/heart';
 
+	import ProfilePic from './ProfilePic.svelte';
+
 	type TProps = {
 		username?: string;
+		pfp?: string;
 		posted_ago?: string;
 		like_count?: number;
 		comment_count?: number;
 	};
 
-	const { username, posted_ago, like_count, comment_count }: TProps = $props();
+	const { username, pfp, posted_ago, like_count, comment_count }: TProps = $props();
 </script>
 
 <li class="flex w-xs grow flex-col">
 	<header class="mb-2 flex w-full gap-x-2">
-		<div class="skeleton h-12 w-12 rounded-full"></div>
+		<ProfilePic class="h-12" alt={username} src={pfp} />
 		<section class="flex grow flex-col justify-items-center gap-0.25">
 			<h1 class={['h-lh font-bold', { 'skeleton w-[10ch]': !username }]}>
 				{username}
