@@ -4,6 +4,7 @@
 	import IconListBoxOutline from '~icons/mdi/list-box-outline';
 
 	import { base } from '$app/paths';
+	import Carousel from '$lib/components/Carousel.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 </script>
 
@@ -18,44 +19,7 @@
 			<IconListBoxOutline /> Pending Exchanges
 		</button>
 	</nav>
-	<section class="relative">
-		<div class="carousel rounded-lg">
-			<div id="item1" class="carousel-item w-full">
-				<img
-					class="w-full"
-					alt="1"
-					src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-				/>
-			</div>
-			<div id="item2" class="carousel-item w-full">
-				<img
-					class="w-full"
-					alt="2"
-					src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-				/>
-			</div>
-			<div id="item3" class="carousel-item w-full">
-				<img
-					class="w-full"
-					alt="3"
-					src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-				/>
-			</div>
-			<div id="item4" class="carousel-item w-full">
-				<img
-					class="w-full"
-					alt="4"
-					src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-				/>
-			</div>
-		</div>
-		<fieldset class="absolute right-0 bottom-1 left-0 mx-auto w-max">
-			<a class="text-base-100" href="#item1">⋅</a>
-			<a class="text-base-100" href="#item2">⋅</a>
-			<a class="text-base-100" href="#item3">⋅</a>
-			<a class="text-base-100" href="#item4">⋅</a>
-		</fieldset>
-	</section>
+	<Carousel />
 	<section class="flex flex-col gap-y-2">
 		<h2 class="flex items-center gap-x-1 font-bold">
 			Past Competitions
