@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { SvelteURLSearchParams } from 'svelte/reactivity';
-
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	import { base } from '$app/paths';
@@ -11,7 +9,8 @@
 	const { href, children, ...rest }: TProps = $props();
 
 	const auth_href = $derived.by(function () {
-		const params = new SvelteURLSearchParams();
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
+		const params = new URLSearchParams();
 		if (href) params.set('redirect', href);
 		return `${base}/profile/auth?${params}`;
 	});
