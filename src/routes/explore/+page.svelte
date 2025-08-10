@@ -48,7 +48,7 @@
 			</button>
 			<img
 				class="aspect-square w-1/4 grow object-contain"
-				alt="Piece"
+				alt="white cotton shirt"
 				src="https://i.ebayimg.com/thumbs/images/g/w30AAOSwyGxkD3V0/s-l1200.jpg"
 			/>
 			<a class="text-success w-1/8 grow" href={`${base}/delivery/a/options`}>
