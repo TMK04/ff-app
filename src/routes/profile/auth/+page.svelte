@@ -6,13 +6,15 @@
 
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import { me } from '$lib/stores/me';
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
-			$me.auth = true;
-			await goto(`${base}/`);
+			if (!ev.currentTarget.checkValidity()) return;
+			await goto(
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				`${base}/profile/auth/login?${new URLSearchParams(new FormData(ev.currentTarget) as any)}`
+			);
 		} catch (e) {
 			console.error('/profile/auth/+page.svelte onsubmit', e);
 		}
@@ -23,20 +25,22 @@
 	<h1 class="font-cursive mb-4 text-5xl">Fashion Forward</h1>
 	<main>
 		<form {onsubmit}>
-			<label class="mb-4 block">
-				<header class="mb-6">
+			<label class="block">
+				<header class="mb-4">
 					<h2 class="text-large font-bold">Enter your email to continue</h2>
 				</header>
 				<input
 					name="email"
-					class="input w-full"
+					class="input validator w-full"
 					autocomplete="email webauthn"
 					placeholder="email@domain.com"
+					required
 					type="email"
+					value="janedoe@mail.com"
 				/>
 			</label>
 			<!-- TODO: auth -->
-			<button class="btn btn-neutral w-full" type="submit">Continue</button>
+			<button class="btn btn-neutral mt-3 w-full" type="submit">Continue</button>
 		</form>
 
 		<div class="divider text-base-content/50 my-8">or</div>
