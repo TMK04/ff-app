@@ -19,29 +19,62 @@
 	const active_i = writable(0);
 
 	function scrollTo(i: number) {
-		el_obj['carousel'].scrollTo({ left: el_obj[`carousel-item${i}`].offsetLeft });
+		try {
+			el_obj['carousel'].scrollTo({ left: el_obj[`carousel-item${i}`].offsetLeft });
+		} catch (e) {
+			console.error('Carousel.svelte scrollTo', e);
+			throw Error('Carousel.svelte scrollTo');
+		}
+	}
+
+	function nav_OnClick(i: number) {
+		return function () {
+			try {
+				$clicked = true;
+				$active_i = i;
+				scrollTo(i);
+			} catch (e) {
+				console.error(`Carousel.svelte nav${i} onClick`, e);
+			}
+		};
 	}
 
 	$effect(function () {
-		const slide_interval_timeout = 5000;
-		const min_active_i = 0;
-		const max_active_i = item_arr.length - 1;
-		const slide_interval = setInterval(function () {
-			active_i.update(function (prev) {
-				const curr = prev === max_active_i ? min_active_i : prev + 1;
-				scrollTo(curr);
-				return curr;
+		try {
+			const slide_interval_timeout = 5000;
+			const min_active_i = 0;
+			const max_active_i = item_arr.length - 1;
+			const slide_interval = setInterval(function () {
+				try {
+					active_i.update(function (prev) {
+						const curr = prev === max_active_i ? min_active_i : prev + 1;
+						scrollTo(curr);
+						return curr;
+					});
+				} catch (e) {
+					console.error('Carousel.svelte $effect interval', e);
+				}
+			}, slide_interval_timeout);
+
+			const unsubscribeClicked = clicked.subscribe(function (v) {
+				try {
+					if (v) clearInterval(slide_interval);
+				} catch (e) {
+					console.error('Carousel.svelte $effect clicked.subscribe', e);
+				}
 			});
-		}, slide_interval_timeout);
 
-		const unsubscribeClicked = clicked.subscribe(function (v) {
-			if (v) clearInterval(slide_interval);
-		});
-
-		return function () {
-			clearInterval(slide_interval);
-			unsubscribeClicked();
-		};
+			return function () {
+				try {
+					clearInterval(slide_interval);
+					unsubscribeClicked();
+				} catch (e) {
+					console.error('Carousel.svelte $effect teardown', e);
+				}
+			};
+		} catch (e) {
+			console.error('Carousel.svelte $effect', e);
+		}
 	});
 </script>
 
@@ -62,11 +95,7 @@
 				class={{
 					'text-primary': $active_i === i
 				}}
-				onclick={function () {
-					$clicked = true;
-					$active_i = i;
-					scrollTo(i);
-				}}>⋅</button
+				onclick={nav_OnClick(i)}>⋅</button
 			>
 		{/each}
 	</nav>
