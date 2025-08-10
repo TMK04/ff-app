@@ -12,11 +12,11 @@
 <TopSearch />
 <main class="mx-3 flex flex-col gap-y-4">
 	<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
-	<nav role="tablist">
-		<button class="btn btn-outline btn-sm border-base-300" type="button">
+	<nav class="flex gap-x-1.5" role="tablist">
+		<button class="btn-badge" type="button">
 			<IconHistory /> History
 		</button>
-		<button class="btn btn-outline btn-sm border-base-300" type="button">
+		<button class="btn-badge" type="button">
 			<IconListBoxOutline /> Pending Exchanges
 		</button>
 	</nav>

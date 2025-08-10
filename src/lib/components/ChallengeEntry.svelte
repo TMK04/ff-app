@@ -1,8 +1,8 @@
 <script lang="ts">
 	import IconCommentMultipleOutline from '~icons/mdi/comment-multiple-outline';
 	import IconDotsHorizontal from '~icons/mdi/dots-horizontal';
-	import IconHeart from '~icons/mdi/heart';
 
+	import HeartCheckbox from './HeartCheckbox.svelte';
 	import ProfilePic from './ProfilePic.svelte';
 
 	type TProps = {
@@ -32,10 +32,7 @@
 	<div class="skeleton ms-12 mb-3 h-64 w-48"></div>
 	<footer class="ms-12 flex gap-4">
 		<label class="flex items-center font-bold">
-			<input name="like" class="hidden" type="checkbox" />
-			<IconHeart
-				class="stroke-neutral text-base-100 me-1 stroke-2 transition-colors [:checked+&]:text-red-500"
-			/>
+			<HeartCheckbox />
 			<span
 				class={[
 					'me-0.75 inline-block h-lh',
