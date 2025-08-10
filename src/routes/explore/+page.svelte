@@ -6,6 +6,7 @@
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
 	import IconSortVariant from '~icons/mdi/sort-variant';
 
+	import { base } from '$app/paths';
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 	import { blank_gif } from '$lib/skeleton';
@@ -50,9 +51,9 @@
 				alt="Piece"
 				src="https://i.ebayimg.com/thumbs/images/g/w30AAOSwyGxkD3V0/s-l1200.jpg"
 			/>
-			<button class="text-success w-1/8 grow" type="button">
+			<a class="text-success w-1/8 grow" href={`${base}/delivery/a/options`}>
 				<IconArrowRightBold height="100%" width="100%" />
-			</button>
+			</a>
 		</article>
 		<p class="text-center font-bold">Swipe</p>
 	</section>
