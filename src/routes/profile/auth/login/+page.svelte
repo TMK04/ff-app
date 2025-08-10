@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { EventHandler } from 'svelte/elements';
 
+	import { building } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
@@ -31,7 +32,7 @@
 				placeholder="email@domain.com"
 				required
 				type="email"
-				value={page.url.searchParams.get('email')}
+				value={building ? '' : page.url.searchParams.get('email')}
 			/>
 		</label>
 		<label class="block">
