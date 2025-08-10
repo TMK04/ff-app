@@ -3,6 +3,7 @@
 	import IconHistory from '~icons/mdi/history';
 	import IconListBoxOutline from '~icons/mdi/list-box-outline';
 
+	import { base } from '$app/paths';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 </script>
 
@@ -81,13 +82,12 @@
 			{/each}
 		</article>
 	</section>
-	<section class="flex flex-col gap-y-2">
-		<h2 class="flex items-center gap-x-1 font-bold">
-			About Us
-			<IconChevronRightCircle class="inline align-middle" />
-		</h2>
-		<figure>
-			<div class="skeleton h-24 rounded"></div>
-		</figure>
-	</section>
+	<footer class="flex flex-col gap-y-2">
+		<a href={`${base}/about`}>
+			<h2 class="flex items-center gap-x-1 font-bold">
+				About Us
+				<IconChevronRightCircle class="inline align-middle" />
+			</h2>
+		</a>
+	</footer>
 </main>
