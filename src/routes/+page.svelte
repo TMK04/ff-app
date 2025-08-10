@@ -5,7 +5,7 @@
 
 	import { base } from '$app/paths';
 	import Carousel from '$lib/components/Carousel.svelte';
-	import ProfilePic from '$lib/components/ProfilePic.svelte';
+	import ImgPfp from '$lib/components/ImgPfp.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 </script>
 
@@ -41,7 +41,7 @@
 		</h2>
 		<article class="flex gap-x-4 overflow-x-scroll">
 			{#each { length: 10 }}
-				<ProfilePic class="h-16" />
+				<ImgPfp class="h-16" />
 			{/each}
 		</article>
 	</section>

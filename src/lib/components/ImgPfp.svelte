@@ -1,16 +1,16 @@
 <script lang="ts">
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	import { blank_gif } from '$lib/skeleton';
+	import ImgMaybeSkeleton from './ImgMaybeSkeleton.svelte';
 
 	type TProps = HTMLImgAttributes;
 
 	const { alt, class: _class, src, ...rest }: TProps = $props();
 </script>
 
-<img
-	class={['aspect-square rounded-full', _class, { skeleton: !src }]}
+<ImgMaybeSkeleton
+	class={['aspect-square rounded-full', _class]}
 	alt={alt || 'pfp'}
-	src={src || blank_gif}
+	{src}
 	{...rest}
 />
