@@ -6,7 +6,7 @@
 
 <TopNav>Vote</TopNav>
 <main class="mx-6 flex flex-col items-center">
-	<Hearts />
+	<Hearts used={0} />
 	<ol class="flex w-full flex-wrap gap-8">
 		{#each { length: 10 }}
 			<ChallengeEntry
