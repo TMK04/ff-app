@@ -4,6 +4,12 @@
 @plugin "daisyui" {
 	themes: light --default;
 }
+@plugin "daisyui/theme" {
+	name: 'light';
+	default: true;
+	--color-primary: oklch(55% 0.2 21.86);
+	--color-primary-content: oklch(98% 0.01 21.86);
+}
 
 @theme {
 	--font-cursive: 'Island Moments', cursive;
