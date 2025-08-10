@@ -45,12 +45,17 @@
 			{/each}
 		</article>
 	</section>
-	<footer class="flex flex-col gap-y-2">
-		<a href={`${base}/about`}>
-			<h2 class="flex items-center gap-x-1 font-bold">
+	<a href={`${base}/about`}>
+		<footer class="flex flex-col gap-y-2">
+			<h2 class="[:hover>&]:bg-base-200 flex w-max items-center gap-x-1 font-bold">
 				About Us
 				<IconChevronRightCircle class="inline align-middle" />
 			</h2>
-		</a>
-	</footer>
+			<img
+				class="w-32"
+				alt="Sustainable Fashion"
+				src="https://i.pinimg.com/236x/cc/5e/16/cc5e16c2078f1ccb0be7f6f9c330051d.jpg"
+			/>
+		</footer>
+	</a>
 </main>

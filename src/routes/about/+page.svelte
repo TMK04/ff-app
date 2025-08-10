@@ -28,4 +28,9 @@
 		take a stand for the planet — one outfit at a time.
 	</p>
 	<br />
+	<img
+		class="mx-auto w-48"
+		alt="Sustainable Fashion"
+		src="https://i.pinimg.com/236x/cc/5e/16/cc5e16c2078f1ccb0be7f6f9c330051d.jpg"
+	/>
 </main>
