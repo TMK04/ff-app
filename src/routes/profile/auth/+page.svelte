@@ -11,7 +11,6 @@
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
-			if (!ev.currentTarget.checkValidity()) return;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const form_data = new FormData(ev.currentTarget) as any;
 			const params = new URLSearchParams([

@@ -9,7 +9,6 @@
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
-			if (!ev.currentTarget.checkValidity()) return;
 			$me.auth = true;
 			const redirect = page.url.searchParams.get('redirect');
 			await goto(redirect || `${base}/`);
