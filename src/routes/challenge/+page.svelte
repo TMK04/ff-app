@@ -10,7 +10,11 @@
 	</h2>
 </header>
 <main class="mx-6 flex flex-col justify-center gap-y-4">
-	<div class="skeleton mx-6 aspect-[3/4]"></div>
+	<img
+		class="mx-6 aspect-[3/4]"
+		alt="Summer is in the air"
+		src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRRUJSwgwZYhtPkgBDKH8NnyCfbFuTeb4_yQ9GVEwoezAK5sqeQ"
+	/>
 	<p class="mb-2 text-center">
 		This Month's Prize: $100 Levi's Gift Card<br />There will be 1 winner for every 250 participants
 	</p>
