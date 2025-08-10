@@ -9,7 +9,13 @@
 	<Hearts />
 	<ol class="flex w-full flex-wrap gap-8">
 		{#each { length: 10 }}
-			<ChallengeEntry comment_count={4} like_count={21} posted_ago="3mins ago" username="Daniel" />
+			<ChallengeEntry
+				comment_count={4}
+				like_count={21}
+				pfp="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
+				posted_ago="3mins ago"
+				username="Daniel"
+			/>
 		{/each}
 	</ol>
 </main>
