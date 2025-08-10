@@ -6,15 +6,19 @@
 
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { page } from '$app/state';
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
 			if (!ev.currentTarget.checkValidity()) return;
-			await goto(
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				`${base}/profile/auth/login?${new URLSearchParams(new FormData(ev.currentTarget) as any)}`
-			);
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const form_data = new FormData(ev.currentTarget) as any;
+			const params = new URLSearchParams([
+				...form_data.entries(),
+				...page.url.searchParams.entries()
+			]);
+			await goto(`${base}/profile/auth/login?${params}`);
 		} catch (e) {
 			console.error('/profile/auth/+page.svelte onsubmit', e);
 		}

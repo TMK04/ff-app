@@ -11,7 +11,8 @@
 			ev.preventDefault();
 			if (!ev.currentTarget.checkValidity()) return;
 			$me.auth = true;
-			await goto(`${base}/`);
+			const redirect = page.url.searchParams.get('redirect');
+			await goto(redirect || `${base}/`);
 		} catch (e) {
 			console.error('/profile/auth/login/+page.svelte onsubmit', e);
 		}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 </script>
 
@@ -18,6 +19,10 @@
 	<p class="mb-2 text-center">
 		This Month's Prize: $100 Levi's Gift Card<br />There will be 1 winner for every 250 participants
 	</p>
-	<a class="btn btn-primary mx-auto w-max" href={`${base}/challenge/signup`}>Sign Up</a>
-	<a class="btn btn-primary mx-auto w-max" href={`${base}/challenge/vote`}>Vote</a>
+	<MaybeAuthA class="btn btn-primary mx-auto w-max" href={`${base}/challenge/signup`}>
+		Sign Up
+	</MaybeAuthA>
+	<MaybeAuthA class="btn btn-primary mx-auto w-max" href={`${base}/challenge/vote`}>
+		Vote
+	</MaybeAuthA>
 </main>
