@@ -2,8 +2,6 @@
 	import { building } from '$app/environment';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
-
-	const id = page.params['id'];
 </script>
 
 <div class="mx-3 mt-6 flex flex-col gap-y-4">
@@ -36,7 +34,7 @@
 	</article>
 	<a
 		class="btn btn-primary mt-6 w-full"
-		href={`${base}/delivery/${id}/summary?${building ? '' : page.url.searchParams}`}
+		href={`${base}/delivery/a/summary?${building ? '' : page.url.searchParams}`}
 	>
 		Confirm
 	</a>
