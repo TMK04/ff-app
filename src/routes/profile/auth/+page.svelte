@@ -28,7 +28,7 @@
 	<form {onsubmit}>
 		<label class="block">
 			<header class="mb-4">
-				<h2 class="text-large font-bold">Enter your email to continue</h2>
+				<h2 class="font-bold">Enter your email to continue</h2>
 			</header>
 			<input
 				name="email"
