@@ -21,6 +21,6 @@
 	<BottomNavTab Icon={IconLightbulbOnOutline} path="learn">Learn</BottomNavTab>
 	<BottomNavTab
 		Icon={$me.auth ? IconAccount : IconAccountKey}
-		path={$me.auth ? 'profile' : 'profile/signup'}>Profile</BottomNavTab
+		path={$me.auth ? 'profile' : 'profile/auth'}>Profile</BottomNavTab
 	>
 </nav>

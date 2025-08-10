@@ -9,7 +9,7 @@
 	const onclick: MouseEventHandler<HTMLButtonElement> = function () {
 		try {
 			$me.auth = false;
-			// Relevant pages like /profile have $effect to redirect to /profile/signup
+			// Relevant pages like /profile have $effect to redirect to /profile/auth
 		} catch (e) {
 			console.error('/profile/logout/+page.svelte onclick', e);
 		}

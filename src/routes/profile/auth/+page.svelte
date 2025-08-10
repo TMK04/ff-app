@@ -14,7 +14,7 @@
 			$me.auth = true;
 			await goto(`${base}/`);
 		} catch (e) {
-			console.error('/profile/signup/+page.svelte onclick', e);
+			console.error('/profile/auth/+page.svelte onclick', e);
 		}
 	};
 </script>

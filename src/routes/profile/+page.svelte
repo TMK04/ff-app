@@ -9,7 +9,7 @@
 		if (!$me.auth) {
 			(async function () {
 				try {
-					await goto(`${base}/profile/signup`);
+					await goto(`${base}/profile/auth`);
 				} catch (e) {
 					console.error('/profile/+page.svelte $effect`)', e);
 				}
