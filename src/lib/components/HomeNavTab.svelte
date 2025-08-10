@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
+	import MaybeAuthA from './MaybeAuthA.svelte';
+
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 
@@ -11,7 +13,7 @@
 	const active = $derived(RegExp(`^${href}(/.*|$)`).test(page.url.pathname));
 </script>
 
-<a
+<MaybeAuthA
 	class={[
 		'btn-badge',
 		{
@@ -22,4 +24,4 @@
 	{...rest}
 >
 	{@render children()}
-</a>
+</MaybeAuthA>
