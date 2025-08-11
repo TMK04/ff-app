@@ -8,6 +8,7 @@
 
 	import { base } from '$app/paths';
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
+	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 	import { blank_gif } from '$lib/skeleton';
 </script>
@@ -51,9 +52,9 @@
 				alt="white cotton shirt"
 				src="https://i.ebayimg.com/thumbs/images/g/w30AAOSwyGxkD3V0/s-l1200.jpg"
 			/>
-			<a class="text-success w-1/8 grow" href={`${base}/delivery/a/options`}>
+			<MaybeAuthA class="text-success w-1/8 grow" href={`${base}/delivery/a/options`}>
 				<IconArrowRightBold height="100%" width="100%" />
-			</a>
+			</MaybeAuthA>
 		</article>
 		<p class="text-center font-bold">Swipe</p>
 	</section>
