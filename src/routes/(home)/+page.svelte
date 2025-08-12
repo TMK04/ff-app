@@ -31,9 +31,11 @@
 		{/each}
 	</article>
 </section>
-<a href={`${base}/about`}>
+<a class="w-max" href={`${base}/about`}>
 	<footer class="flex flex-col gap-y-2">
-		<h2 class="[:hover>&]:bg-base-200 flex w-max items-center gap-x-1 font-bold">
+		<h2
+			class="[:hover>&]:bg-base-200 -mr-0.5 -ml-1 flex w-max items-center gap-x-1 pr-0.5 pl-1 font-bold"
+		>
 			About Us
 			<IconChevronRightCircle class="inline align-middle" />
 		</h2>
