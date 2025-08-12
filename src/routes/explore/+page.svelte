@@ -44,15 +44,38 @@
 	></div>
 	<section>
 		<article class="mb-3 flex items-center">
-			<button class="text-error w-1/8 grow" type="button">
+			<button
+				class="text-error w-1/8 grow"
+				ondragover={function (ev) {
+					ev.preventDefault();
+					ev.dataTransfer!.dropEffect = 'link';
+				}}
+				type="button"
+			>
 				<IconArrowLeftBold height="100%" width="100%" />
 			</button>
 			<img
 				class="aspect-square w-1/4 grow object-contain"
 				alt="white cotton shirt"
+				draggable
+				ondragstart={function (ev) {
+					ev.dataTransfer!.setData('application/custom', ev.currentTarget.id);
+					ev.dataTransfer!.effectAllowed = 'link';
+				}}
 				src="https://i.ebayimg.com/thumbs/images/g/w30AAOSwyGxkD3V0/s-l1200.jpg"
 			/>
-			<MaybeAuthA class="text-success w-1/8 grow" href={`${base}/delivery/a/options`}>
+			<MaybeAuthA
+				class="text-success w-1/8 grow"
+				href={`${base}/delivery/a/options`}
+				ondragover={function (ev) {
+					ev.preventDefault();
+					ev.dataTransfer!.dropEffect = 'link';
+				}}
+				ondrop={async function (ev) {
+					ev.preventDefault();
+					ev.currentTarget.click();
+				}}
+			>
 				<IconArrowRightBold height="100%" width="100%" />
 			</MaybeAuthA>
 		</article>
