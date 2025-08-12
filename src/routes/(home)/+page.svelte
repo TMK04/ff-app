@@ -3,11 +3,10 @@
 
 	import { base } from '$app/paths';
 	import Carousel from '$lib/components/Carousel.svelte';
-	import ImgPfp from '$lib/components/ImgPfp.svelte';
 </script>
 
 <Carousel />
-<section class="flex flex-col gap-y-2">
+<!-- <section class="flex flex-col gap-y-2">
 	<h2 class="flex items-center gap-x-1 font-bold">
 		Past Competitions
 		<IconChevronRightCircle class="inline align-middle" />
@@ -30,7 +29,7 @@
 			<ImgPfp class="h-16" />
 		{/each}
 	</article>
-</section>
+</section> -->
 <a class="w-max" href={`${base}/about`}>
 	<footer class="flex flex-col gap-y-2">
 		<h2

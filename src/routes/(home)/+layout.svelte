@@ -1,5 +1,4 @@
 <script lang="ts">
-	import IconHistory from '~icons/mdi/history';
 	import IconListBoxOutline from '~icons/mdi/list-box-outline';
 
 	import type { Snippet } from 'svelte';
@@ -17,9 +16,9 @@
 <main class="mx-3 flex flex-col gap-y-4">
 	<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 	<nav class="flex gap-x-1.5" role="tablist">
-		<HomeNavTab href="/history">
+		<!-- <HomeNavTab href="/history">
 			<IconHistory /> History
-		</HomeNavTab>
+		</HomeNavTab> -->
 		<HomeNavTab href="/exchanges">
 			<IconListBoxOutline /> Pending Exchanges
 		</HomeNavTab>
