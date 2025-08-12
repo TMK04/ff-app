@@ -20,8 +20,8 @@
 		<HomeNavTab href="/history">
 			<IconHistory /> History
 		</HomeNavTab>
-		<HomeNavTab href="/swaps">
-			<IconListBoxOutline /> Pending Swaps
+		<HomeNavTab href="/exchanges">
+			<IconListBoxOutline /> Pending Exchanges
 		</HomeNavTab>
 	</nav>
 	{@render children()}
