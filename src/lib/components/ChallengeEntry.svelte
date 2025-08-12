@@ -34,29 +34,23 @@
 	</header>
 	<ImgMaybeSkeleton class="ms-12 mb-3 h-80 w-48 object-cover" alt={title} {src} />
 	<footer class="ms-12 flex gap-4">
-		<label class="flex items-center font-bold">
+		<label class="gap-x-space flex items-center font-bold">
 			<HeartCheckbox />
 			<span
-				class={[
-					'me-0.75 inline-block h-lh',
-					{ 'skeleton w-[2ch]': typeof like_count === 'undefined' }
-				]}
+				class={['inline-block h-lh', { 'skeleton w-[2ch]': typeof like_count === 'undefined' }]}
 			>
 				{like_count}
 			</span>
 			likes
 		</label>
-		<button class="flex items-center font-bold">
-			<IconCommentMultipleOutline class="me-1" />
+		<button class="gap-x-space flex items-center font-bold">
+			<IconCommentMultipleOutline />
 			<span
-				class={[
-					'me-0.75 inline-block h-lh',
-					{ 'skeleton w-[2ch]': typeof comment_count === 'undefined' }
-				]}
+				class={['inline-block h-lh', { 'skeleton w-[2ch]': typeof comment_count === 'undefined' }]}
 			>
 				{comment_count}
 			</span>
-			comments
+			<span>comments</span>
 		</button>
 	</footer>
 </li>

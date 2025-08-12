@@ -15,7 +15,7 @@
 
 <MaybeAuthA
 	class={[
-		'btn-badge',
+		'btn-badge gap-x-space',
 		{
 			'not-hover:bg-base-200 border-base-content/60': active
 		}

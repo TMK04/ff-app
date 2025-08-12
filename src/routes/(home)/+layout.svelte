@@ -15,7 +15,7 @@
 <TopSearch />
 <main class="mx-3 flex flex-col gap-y-4">
 	<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
-	<nav class="flex gap-x-1.5" role="tablist">
+	<nav class="flex gap-x-2" role="tablist">
 		<!-- <HomeNavTab href="/history">
 			<IconHistory /> History
 		</HomeNavTab> -->

@@ -7,7 +7,7 @@
 </script>
 
 <TopNav>
-	<div class="flex items-center justify-center gap-x-[0.4ch]">
+	<div class="gap-x-space flex items-center justify-center">
 		<IconParcelIcon /><span>ParcelPickup</span>
 	</div>
 </TopNav>

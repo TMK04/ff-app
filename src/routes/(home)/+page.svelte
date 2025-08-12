@@ -7,7 +7,7 @@
 
 <Carousel />
 <!-- <section class="flex flex-col gap-y-2">
-	<h2 class="flex items-center gap-x-1 font-bold">
+	<h2 class="flex items-center gap-x-space font-bold">
 		Past Competitions
 		<IconChevronRightCircle class="inline align-middle" />
 	</h2>
@@ -20,7 +20,7 @@
 	</article>
 </section>
 <section class="flex flex-col gap-y-2">
-	<h2 class="flex items-center gap-x-1 font-bold">
+	<h2 class="flex items-center gap-x-space font-bold">
 		Our Partners
 		<IconChevronRightCircle class="inline align-middle" />
 	</h2>
@@ -33,7 +33,7 @@
 <a class="w-max" href={`${base}/about`}>
 	<footer class="flex flex-col gap-y-2">
 		<h2
-			class="[:hover>&]:bg-base-200 -mr-0.5 -ml-1 flex w-max items-center gap-x-1 pr-0.5 pl-1 font-bold"
+			class="[:hover>&]:bg-base-200 gap-x-space -mr-0.5 -ml-1 flex w-max items-center pr-0.5 pl-1 font-bold"
 		>
 			About Us
 			<IconChevronRightCircle class="inline align-middle" />

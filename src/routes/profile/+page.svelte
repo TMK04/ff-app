@@ -24,7 +24,7 @@
 <TopNav>Profile</TopNav>
 <main class="mx-3 mt-3">
 	<section class="mb-9">
-		<h2 class="mb-3 flex items-center gap-x-1 text-xl font-bold">
+		<h2 class="gap-x-space mb-3 flex items-center text-xl font-bold">
 			<IconListBoxOutline /><span>Pending Exchanges</span>
 		</h2>
 		<PendingExchanges />

@@ -16,7 +16,7 @@
 <TopSearch />
 <main class="relative flex grow flex-col gap-y-4">
 	<section class="mx-3 flex items-center gap-x-2">
-		<section class="flex w-0 grow gap-x-1.5 overflow-x-scroll">
+		<section class="flex w-0 grow gap-x-2 overflow-x-scroll">
 			<button class="btn-badge" type="button">
 				Filter <IconFilter />
 			</button>
@@ -58,7 +58,7 @@
 		</article>
 		<p class="text-center font-bold">Swipe</p>
 	</section>
-	<label class="sticky mt-3 mr-6 ml-auto flex w-max items-center">
+	<label class="gap-x-space sticky mt-3 mr-6 ml-auto flex w-max items-center">
 		<HeartCheckbox />
 		<span>Liked Clothing</span>
 	</label>

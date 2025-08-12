@@ -16,10 +16,12 @@
 	--font-sans:
 		'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 		'Segoe UI Symbol', 'Noto Color Emoji';
+	
+	--spacing-space: 0.35ch;
 }
 
 @layer components {
 	.btn-badge {
-		@apply btn btn-outline btn-sm border-base-300;
+		@apply btn btn-outline btn-sm border-base-300 gap-x-space;
 	}
 }
