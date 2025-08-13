@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import IconArrowLeftBold from '~icons/mdi/arrow-left-bold';
 	import IconArrowRightBold from '~icons/mdi/arrow-right-bold';
 	import IconClose from '~icons/mdi/close';
@@ -6,12 +7,51 @@
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
 	import IconSortVariant from '~icons/mdi/sort-variant';
 
+	import type { LatLngExpression } from 'leaflet';
+
 	import { base } from '$app/paths';
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
 	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
-	import { blank_gif } from '$lib/skeleton';
+
+	const map_id = 'map';
+
+	onMount(async function () {
+		const L = await import('leaflet');
+		const distance_3km = 3000;
+
+		const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
+		const map = L.map(map_id).setView(center_latlng, 13);
+
+		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution:
+				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		const marker_latlng_arr: LatLngExpression[] = [
+			[center_latlng[0] + 0.015, center_latlng[1]],
+			[center_latlng[0] - 0.015, center_latlng[1]],
+			[center_latlng[0], center_latlng[1] + 0.015],
+			[center_latlng[0], center_latlng[1] - 0.015]
+		];
+		for (const marker_latlng of marker_latlng_arr) {
+			L.marker(marker_latlng).addTo(map);
+		}
+		L.circle(center_latlng, {
+			radius: distance_3km,
+			fillColor: 'var(--color-base-content-100)'
+		}).addTo(map);
+	});
 </script>
+
+<svelte:head>
+	<link
+		crossorigin=""
+		href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+		rel="stylesheet"
+	/>
+</svelte:head>
 
 <TopSearch />
 <main class="relative flex grow flex-col gap-y-4">
@@ -38,7 +78,7 @@
 		</section>
 		<p class="block w-max text-sm">99 results</p>
 	</section>
-	<img class="skeleton aspect-[4/3] w-full" alt="Map" src={blank_gif} />
+	<div id={map_id} class="aspect-[4/3] w-full"></div>
 	<div
 		class="divider before:bg-base-content/50 after:bg-base-content/50 mx-auto my-0 w-12 before:h-1.5 before:rounded-l-full after:h-1.5 after:rounded-r-full"
 	></div>
