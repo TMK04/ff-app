@@ -6,6 +6,7 @@
 	import IconFilter from '~icons/mdi/filter';
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
 	import IconSortVariant from '~icons/mdi/sort-variant';
+	import RawIconTshirtCrew from '~icons/mdi/tshirt-crew?raw&width=100%25&height=100%25';
 
 	import type { LatLngExpression } from 'leaflet';
 
@@ -18,29 +19,34 @@
 
 	onMount(async function () {
 		const L = await import('leaflet');
-		const distance_3km = 3000;
 
 		const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
-		const map = L.map(map_id).setView(center_latlng, 13);
-
+		const map = L.map(map_id).setView(center_latlng, 12);
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		const marker_latlng_arr: LatLngExpression[] = [
-			[center_latlng[0] + 0.015, center_latlng[1]],
-			[center_latlng[0] - 0.015, center_latlng[1]],
-			[center_latlng[0], center_latlng[1] + 0.015],
-			[center_latlng[0], center_latlng[1] - 0.015]
-		];
-		for (const marker_latlng of marker_latlng_arr) {
-			L.marker(marker_latlng).addTo(map);
-		}
+		const distance_3km = 3000;
 		L.circle(center_latlng, {
+			color: 'var(--color-primary)',
 			radius: distance_3km,
-			fillColor: 'var(--color-base-content-100)'
+			fillColor: 'var(--color-base-content)'
 		}).addTo(map);
+
+		const icon = L.divIcon({
+			className:
+				'hover:bg-base-100/60 flex! items-center justify-center rounded-full border-0 p-0.25 transition hover:border-2',
+			iconSize: [24, 24],
+			html: RawIconTshirtCrew as unknown as string
+		});
+		const offset_arr = [0.015, 0.045];
+		for (const offset of offset_arr) {
+			L.marker([center_latlng[0] + offset, center_latlng[1]], { icon }).addTo(map);
+			L.marker([center_latlng[0] - offset, center_latlng[1]], { icon }).addTo(map);
+			L.marker([center_latlng[0], center_latlng[1] + offset], { icon }).addTo(map);
+			L.marker([center_latlng[0], center_latlng[1] - offset], { icon }).addTo(map);
+		}
 	});
 </script>
 
