@@ -15,13 +15,26 @@
 	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 
-	const map_id = 'map';
+	const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
+	const obj_id_piece = $derived.by(function () {
+		const obj: Record<string, { lat: number; lng: number }> = {};
+		const offset_arr = [0.015, 0.045];
+		let id = 0;
+		for (const offset of offset_arr) {
+			obj[(id++).toString()] = { lat: center_latlng[0] + offset, lng: center_latlng[1] };
+			obj[(id++).toString()] = { lat: center_latlng[0] - offset, lng: center_latlng[1] };
+			obj[(id++).toString()] = { lat: center_latlng[0], lng: center_latlng[1] + offset };
+			obj[(id++).toString()] = { lat: center_latlng[0], lng: center_latlng[1] - offset };
+		}
+		return obj;
+	});
+	let map_el: HTMLDivElement;
+	let focused_id = $state<string | undefined>(undefined);
 
 	onMount(async function () {
 		const L = await import('leaflet');
 
-		const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
-		const map = L.map(map_id).setView(center_latlng, 12);
+		const map = L.map(map_el).setView(center_latlng, 12);
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -40,12 +53,27 @@
 			iconSize: [24, 24],
 			html: RawIconTshirtCrew as unknown as string
 		});
-		const offset_arr = [0.015, 0.045];
-		for (const offset of offset_arr) {
-			L.marker([center_latlng[0] + offset, center_latlng[1]], { icon }).addTo(map);
-			L.marker([center_latlng[0] - offset, center_latlng[1]], { icon }).addTo(map);
-			L.marker([center_latlng[0], center_latlng[1] + offset], { icon }).addTo(map);
-			L.marker([center_latlng[0], center_latlng[1] - offset], { icon }).addTo(map);
+		function Marker(id: string) {
+			const piece = obj_id_piece[id];
+			const marker = L.marker([piece.lat, piece.lng], { icon }).addTo(map);
+			marker.addEventListener('click', function (ev) {
+				const curr_focused = ev.target._icon;
+				if (curr_focused.classList.contains('custom--leaflet-marker-focused')) {
+					curr_focused.classList.remove('custom--leaflet-marker-focused');
+					focused_id = undefined;
+					return;
+				}
+
+				for (const prev_focused of map_el.querySelectorAll('.custom--leaflet-marker-focused')) {
+					prev_focused.classList.remove('custom--leaflet-marker-focused');
+				}
+				curr_focused.classList.add('custom--leaflet-marker-focused');
+				focused_id = id;
+			});
+			return marker;
+		}
+		for (const id in obj_id_piece) {
+			Marker(id).addTo(map);
 		}
 	});
 </script>
@@ -84,7 +112,7 @@
 		</section>
 		<p class="block w-max text-sm">99 results</p>
 	</section>
-	<div id={map_id} class="aspect-[4/3] w-full"></div>
+	<div bind:this={map_el} class="aspect-[4/3] w-full"></div>
 	<div
 		class="divider before:bg-base-content/50 after:bg-base-content/50 mx-auto my-0 w-12 before:h-1.5 before:rounded-l-full after:h-1.5 after:rounded-r-full"
 	></div>
@@ -132,3 +160,10 @@
 		<span>Liked Clothing</span>
 	</label>
 </main>
+
+<style>
+	:global(.custom--leaflet-marker-focused) {
+		background-color: color-mix(in oklab, var(--color-base-100) 60%, transparent);
+		border-width: 2px;
+	}
+</style>
