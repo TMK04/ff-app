@@ -5,6 +5,7 @@
 	import { base } from '$app/paths';
 	import Logout from '$lib/components/Logout.svelte';
 	import PendingExchanges from '$lib/components/PendingExchanges.svelte';
+	import ResetStores from '$lib/components/ResetStores.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 	import { me_store } from '$lib/stores/atom/me';
 
@@ -30,4 +31,5 @@
 		<PendingExchanges />
 	</section>
 	<Logout />
+	<ResetStores />
 </main>
