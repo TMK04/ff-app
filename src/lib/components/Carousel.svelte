@@ -8,9 +8,7 @@
 		'https://edienetlive.s3.eu-west-2.amazonaws.com/wp-content/uploads/sites/5/innovation-snapshotsustainable-fashion-business-ideas-2020.jpg'
 	];
 
-	const el_obj = {} as {
-		carousel: HTMLDivElement;
-	} & { [K in `carousel-item${number}`]: HTMLImageElement };
+	let carousel_el: HTMLDivElement;
 
 	/**
 	 * Clicking stops auto-slide interval
@@ -20,7 +18,7 @@
 
 	function scrollTo(i: number) {
 		try {
-			el_obj['carousel'].scrollTo({ left: el_obj[`carousel-item${i}`].offsetLeft });
+			carousel_el.scrollTo({ left: document.getElementById(`carousel-item${i}`)!.offsetLeft });
 		} catch (e) {
 			console.error('Carousel.svelte scrollTo', e);
 			throw Error('Carousel.svelte scrollTo');
@@ -79,10 +77,10 @@
 </script>
 
 <div class="relative">
-	<div bind:this={el_obj['carousel']} class="carousel aspect-[3/1] rounded-lg">
+	<div bind:this={carousel_el} class="carousel aspect-[3/1] rounded-lg">
 		{#each item_arr as item, i (item)}
 			<img
-				bind:this={el_obj[`carousel-item${i}`]}
+				id={`carousel-item${i}`}
 				class="carousel-item h-full w-full object-cover"
 				alt={i.toString()}
 				src={item}
