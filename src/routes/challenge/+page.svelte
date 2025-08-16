@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
+	import { me_has_entry } from '$lib/stores/derived/challenge__me';
 </script>
 
 <TopNav>Sustainability Fashion Challenge</TopNav>
@@ -19,9 +20,11 @@
 	<p class="mb-2 text-center">
 		This Month's Prize: $100 Levi's Gift Card<br />There will be 1 winner for every 250 participants
 	</p>
-	<MaybeAuthA class="btn btn-primary mx-auto w-max" href={`${base}/challenge/signup`}>
-		Sign Up
-	</MaybeAuthA>
+	{#if !$me_has_entry}
+		<MaybeAuthA class="btn btn-primary mx-auto w-max" href={`${base}/challenge/signup`}>
+			Sign Up
+		</MaybeAuthA>
+	{/if}
 	<MaybeAuthA class="btn btn-primary mx-auto w-max" href={`${base}/challenge/vote`}>
 		Vote
 	</MaybeAuthA>

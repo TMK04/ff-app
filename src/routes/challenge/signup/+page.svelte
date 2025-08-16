@@ -3,10 +3,13 @@
 
 	import type { EventHandler, FormEventHandler } from 'svelte/elements';
 
+	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import ChallengeEntryPreview from '$lib/components/ChallengeEntryPreview.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 	import { challenge_store, ChallengeId } from '$lib/stores/atom/challenge';
 	import { me_store } from '$lib/stores/atom/me';
+	import { me_has_entry } from '$lib/stores/derived/challenge__me';
 
 	let img_input_el: HTMLInputElement;
 	let file_name = $state('');
@@ -72,6 +75,16 @@
 			console.error('/challenge/signup/+page.svelte onsubmit', e);
 		}
 	};
+
+	$effect(function () {
+		(async function disallowDoubleEntry() {
+			try {
+				if ($me_has_entry) await goto(`${base}/challenge/vote`);
+			} catch (e) {
+				console.error('/challenge/signup/+page.svelte disallowDoubleEntry', e);
+			}
+		})();
+	});
 </script>
 
 <TopNav>Sign Up for Challenge</TopNav>
