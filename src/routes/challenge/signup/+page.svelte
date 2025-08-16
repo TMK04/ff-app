@@ -1,10 +1,12 @@
 <script lang="ts">
 	import IconClose from '~icons/mdi/close';
 
-	import type { FormEventHandler } from 'svelte/elements';
+	import type { EventHandler, FormEventHandler } from 'svelte/elements';
 
 	import ChallengeEntryPreview from '$lib/components/ChallengeEntryPreview.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
+	import { challenge_store, ChallengeId } from '$lib/stores/challenge';
+	import { me } from '$lib/stores/me';
 
 	let img_input_el: HTMLInputElement;
 	let file_name = $state('');
@@ -46,14 +48,40 @@
 	const like_oninput: FormEventHandler<HTMLInputElement> = function () {
 		like_checked = !like_checked;
 	};
+
+	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = function (ev) {
+		try {
+			ev.preventDefault();
+			const id = ChallengeId();
+			challenge_store.update(function (challenge) {
+				try {
+					challenge[id] = {
+						comment_count: 0,
+						img,
+						like_username_arr: like_checked ? [$me.username] : [],
+						posted_ago: 'just now',
+						title,
+						username: $me.username
+					};
+				} catch (e) {
+					console.error('/challenge/signup/+page.svelte onsubmit update', e);
+				}
+				return challenge;
+			});
+		} catch (e) {
+			console.error('/challenge/signup/+page.svelte onsubmit', e);
+		}
+	};
 </script>
 
 <TopNav>Sign Up for Challenge</TopNav>
 
 <main class="mx-6 mt-4">
-	<form>
-		<section class="flex flex-wrap gap-3">
-			<label class="join min-w-max grow">
+	<form {onsubmit}>
+		<section class="flex flex-wrap justify-center gap-3">
+			<label
+				class="join has-user-invalid:outline-error min-w-max grow outline-offset-2 has-user-invalid:outline-2"
+			>
 				<header class="join-item btn">Select image</header>
 				<p class="join-item input">{file_name || 'No image selected'}</p>
 				<input
@@ -75,6 +103,7 @@
 				required
 				type="text"
 			/>
+			<button class="btn btn-primary" type="submit">Submit Entry</button>
 		</section>
 		<aside>
 			<h2 class="divider divider-primary mt-8 mb-6 text-center text-lg font-bold">Preview</h2>

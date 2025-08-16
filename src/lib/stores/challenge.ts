@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+import { get } from 'svelte/store';
 import { persisted } from 'svelte-persisted-store';
 
 import type { TUsername } from './users';
@@ -36,3 +38,11 @@ export const challenge_store = persisted<{
 		username: 'Daniel'
 	}
 });
+
+export function ChallengeId() {
+	let id: string;
+	do {
+		id = nanoid();
+	} while (id in get(challenge_store));
+	return id;
+}
