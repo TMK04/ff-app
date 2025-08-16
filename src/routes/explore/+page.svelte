@@ -7,7 +7,7 @@
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
 	import IconSortVariant from '~icons/mdi/sort-variant';
 
-	import type { LatLngExpression } from 'leaflet';
+	import type { Circle, LatLngExpression } from 'leaflet';
 
 	import { base } from '$app/paths';
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
@@ -16,10 +16,14 @@
 	import { blank_gif } from '$lib/skeleton';
 	import { pieces_store, type TPiece, type TPieceId } from '$lib/stores/atom/pieces';
 
-	const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
-	let map_el: HTMLFieldSetElement;
-	let focused_id = $state<TPieceId | undefined>(undefined);
+	let filter_within3km_checked = $state(true);
 
+	const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
+
+	const map_id = 'map';
+	let filter_within3km_circle = $state<Circle | undefined>(undefined);
+
+	let focused_id = $state<TPieceId | undefined>(undefined);
 	const focused_piece = $derived<undefined | TPiece>(
 		focused_id ? $pieces_store[focused_id] : undefined
 	);
@@ -28,14 +32,15 @@
 		const L = await import('leaflet');
 		const { ElIcon } = await import('$lib/ElIcon');
 
-		const map = L.map(map_el).setView(center_latlng, 12);
+		const map = L.map(map_id).setView(center_latlng, 12);
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution:
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
 		const distance_3km = 3000;
-		L.circle(center_latlng, {
+		filter_within3km_circle = L.circle(center_latlng, {
+			className: 'custom--leaflet-circle',
 			color: 'var(--color-primary)',
 			radius: distance_3km,
 			fillColor: 'var(--color-base-content)'
@@ -67,6 +72,18 @@
 			marker.addTo(map);
 		}
 	});
+
+	$effect(function () {
+		if (filter_within3km_checked) {
+			if (filter_within3km_circle) {
+				filter_within3km_circle.getElement()?.classList.remove('hidden');
+			}
+			return;
+		}
+		if (filter_within3km_circle) {
+			filter_within3km_circle.getElement()?.classList.add('hidden');
+		}
+	});
 </script>
 
 <svelte:head>
@@ -93,7 +110,7 @@
 			>
 				Within 3km
 				<div class="swap swap-rotate">
-					<input checked type="checkbox" />
+					<input type="checkbox" bind:checked={filter_within3km_checked} />
 					<IconClose
 						class="swap-on stroke-current stroke-1 transition-[stroke-width] group-hover:stroke-2"
 					/>
@@ -103,7 +120,7 @@
 		</section>
 		<p class="block w-max text-sm">99 results</p>
 	</section>
-	<fieldset bind:this={map_el} class="aspect-[4/3] w-full"></fieldset>
+	<fieldset id={map_id} class="aspect-[4/3] w-full"></fieldset>
 	<div
 		class="divider before:bg-base-content/50 after:bg-base-content/50 mx-auto my-0 w-12 before:h-1.5 before:rounded-l-full after:h-1.5 after:rounded-r-full"
 	></div>
