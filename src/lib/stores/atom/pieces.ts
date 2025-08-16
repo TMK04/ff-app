@@ -1,6 +1,8 @@
 import { persisted } from 'svelte-persisted-store';
 
 import type { TUsername } from './users';
+import { get } from 'svelte/store';
+import { nanoid } from 'nanoid';
 
 export type TPieceId = string;
 
@@ -37,3 +39,11 @@ export const pieces_store = persisted<{
 		username: 'Daniel'
 	}
 });
+
+export function PieceId() {
+	let id: string;
+	do {
+		id = nanoid();
+	} while (id in get(pieces_store));
+	return id;
+}

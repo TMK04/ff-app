@@ -9,7 +9,7 @@
 </script>
 
 <ImgMaybeSkeleton
-	class={['aspect-square rounded-full', _class]}
+	class={['aspect-square rounded-full object-cover', _class]}
 	alt={alt || 'pfp'}
 	{src}
 	{...rest}

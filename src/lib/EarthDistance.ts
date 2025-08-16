@@ -3,10 +3,12 @@ import type { LatLngLiteral } from 'leaflet';
 /**
  * Mean Earth Radius, as recommended for use by
  * the International Union of Geodesy and Geophysics
- * @see https://rosettacode.org/wiki/Haversine_formula
  */
 const R = 6371000;
 
+/**
+ * @see https://rosettacode.org/wiki/Haversine_formula
+ */
 export function EarthDistance(latlng1: LatLngLiteral, latlng2: LatLngLiteral) {
 	const rad = Math.PI / 180,
 		lat1 = latlng1.lat * rad,

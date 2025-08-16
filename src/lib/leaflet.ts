@@ -1,14 +1,12 @@
-/*
+import { Icon, map, Point, tileLayer, type DivIconOptions } from 'leaflet';
+import { latlng_serangoon } from './skeleton';
+
+/**
  * @class ElIcon
  * @inherits Icon
  *
  * DivIcon but dynamic tag
  */
-
-import { Icon, Point, type DivIconOptions } from 'leaflet';
-
-// @constructor ElIcon(options: ElIcon options)
-// Creates a `ElIcon` instance with the given options.
 export class ElIcon extends Icon<DivIconOptions & { tagName: keyof HTMLElementTagNameMap }> {
 	createIcon(oldIcon: HTMLElement) {
 		const options = this.options;
@@ -36,4 +34,14 @@ export class ElIcon extends Icon<DivIconOptions & { tagName: keyof HTMLElementTa
 	createShadow() {
 		return null as any;
 	}
+}
+
+export function LeafletMap(map_id: string) {
+	const leaflet_map = map(map_id, { center: latlng_serangoon, zoom: 12 });
+	tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution:
+			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(leaflet_map);
+
+	return leaflet_map;
 }

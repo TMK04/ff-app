@@ -15,10 +15,10 @@
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
 	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
-	import { blank_gif } from '$lib/skeleton';
+	import { blank_gif, latlng_serangoon } from '$lib/skeleton';
 	import { pieces_store, type TPiece, type TPieceId } from '$lib/stores/atom/pieces';
 
-	const center_latlng: LatLngLiteral = { lat: 1.3499039, lng: 103.8728901 };
+	const center_latlng: LatLngLiteral = latlng_serangoon;
 
 	const distance_3km = 3000;
 	let filter_within3km_checked = $state(true);
@@ -63,13 +63,9 @@
 
 	onMount(async function () {
 		const L = await import('leaflet');
-		const { ElIcon } = await import('$lib/ElIcon');
+		const { ElIcon, LeafletMap } = await import('$lib/leaflet');
 
-		const map = L.map(map_id).setView(center_latlng, 12);
-		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution:
-				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-		}).addTo(map);
+		const map = LeafletMap(map_id);
 
 		filter_within3km_circle = L.circle(center_latlng, {
 			className: 'custom--leaflet-circle',
@@ -216,3 +212,6 @@
 		{/if}
 	</article>
 </main>
+<footer class="mt-6 flex flex-col items-center">
+	<a class="btn btn-primary" href={`${base}/profile/piece/list`}>List a new piece</a>
+</footer>
