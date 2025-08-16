@@ -21,31 +21,25 @@
 
 <main>
 	<form {onsubmit}>
-		<label class="mb-2 block">
-			<header class="mb-4">
-				<h2 class="text-large font-bold">Enter your password to login</h2>
-			</header>
-			<input
-				name="email"
-				class="input validator w-full"
-				autocomplete="email webauthn"
-				placeholder="email@domain.com"
-				required
-				type="email"
-				value={building ? '' : page.url.searchParams.get('email')}
-			/>
-		</label>
-		<label class="block">
-			<input
-				name="password"
-				class="input validator w-full"
-				autocomplete="current-password webauthn"
-				placeholder="Password"
-				required
-				type="password"
-				value="P@ssw0rd"
-			/>
-		</label>
+		<h2 class="text-large mb-4 font-bold">Enter your password to login</h2>
+		<input
+			name="email"
+			class="input validator mb-2 w-full"
+			autocomplete="email webauthn"
+			placeholder="email@domain.com"
+			required
+			type="email"
+			value={building ? '' : page.url.searchParams.get('email')}
+		/>
+		<input
+			name="password"
+			class="input validator w-full"
+			autocomplete="current-password webauthn"
+			placeholder="Password"
+			required
+			type="password"
+			value="P@ssw0rd"
+		/>
 		<!-- TODO: auth -->
 		<button class="btn btn-neutral mt-3 w-full" type="submit">Login</button>
 	</form>

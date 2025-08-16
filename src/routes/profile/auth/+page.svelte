@@ -27,9 +27,7 @@
 <main>
 	<form {onsubmit}>
 		<label class="block">
-			<header class="mb-4">
-				<h2 class="font-bold">Enter your email to continue</h2>
-			</header>
+			<h2 class="mb-4 font-bold">Enter your email to continue</h2>
 			<input
 				name="email"
 				class="input validator w-full"
