@@ -194,7 +194,10 @@
 			>
 				<IconArrowRightBold height="100%" width="100%" />
 			</MaybeAuthA>
-			<p class="mt-3 basis-full text-center font-bold">Swipe</p>
+			<p class="gap-space mt-3 flex basis-full flex-col items-center font-bold">
+				<span>Swipe <span class="text-error">left</span> to see next,</span>
+				<span><span class="text-success">right</span> to exchange</span>
+			</p>
 			<div class="basis-full">
 				<label class="gap-x-space sticky mt-3 mr-6 ml-auto flex w-max items-center">
 					<HeartCheckbox />
