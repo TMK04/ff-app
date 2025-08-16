@@ -6,7 +6,6 @@
 	import IconFilter from '~icons/mdi/filter';
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
 	import IconSortVariant from '~icons/mdi/sort-variant';
-	import RawIconTshirtCrew from '~icons/mdi/tshirt-crew?raw&width=100%25&height=100%25';
 
 	import type { LatLngExpression } from 'leaflet';
 
@@ -14,25 +13,20 @@
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
 	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
+	import { blank_gif } from '$lib/skeleton';
+	import { pieces_store, type TPiece, type TPieceId } from '$lib/stores/atom/pieces';
 
 	const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
-	const obj_id_piece = $derived.by(function () {
-		const obj: Record<string, { lat: number; lng: number }> = {};
-		const offset_arr = [0.015, 0.045];
-		let id = 0;
-		for (const offset of offset_arr) {
-			obj[(id++).toString()] = { lat: center_latlng[0] + offset, lng: center_latlng[1] };
-			obj[(id++).toString()] = { lat: center_latlng[0] - offset, lng: center_latlng[1] };
-			obj[(id++).toString()] = { lat: center_latlng[0], lng: center_latlng[1] + offset };
-			obj[(id++).toString()] = { lat: center_latlng[0], lng: center_latlng[1] - offset };
-		}
-		return obj;
-	});
-	let map_el: HTMLDivElement;
-	let focused_id = $state<string | undefined>(undefined);
+	let map_el: HTMLFieldSetElement;
+	let focused_id = $state<TPieceId | undefined>(undefined);
+
+	const focused_piece = $derived<undefined | TPiece>(
+		focused_id ? $pieces_store[focused_id] : undefined
+	);
 
 	onMount(async function () {
 		const L = await import('leaflet');
+		const { ElIcon } = await import('$lib/ElIcon');
 
 		const map = L.map(map_el).setView(center_latlng, 12);
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -47,33 +41,30 @@
 			fillColor: 'var(--color-base-content)'
 		}).addTo(map);
 
-		const icon = L.divIcon({
-			className:
-				'hover:bg-base-100/60 flex! items-center justify-center rounded-full border-0 p-0.25 transition hover:border-2',
-			iconSize: [24, 24],
-			html: RawIconTshirtCrew as unknown as string
-		});
-		function Marker(id: string) {
-			const piece = obj_id_piece[id];
-			const marker = L.marker([piece.lat, piece.lng], { icon }).addTo(map);
-			marker.addEventListener('click', function (ev) {
-				const curr_focused = ev.target._icon;
-				if (curr_focused.classList.contains('custom--leaflet-marker-focused')) {
-					curr_focused.classList.remove('custom--leaflet-marker-focused');
-					focused_id = undefined;
-					return;
-				}
+		for (const id in $pieces_store) {
+			const piece = $pieces_store[id];
 
-				for (const prev_focused of map_el.querySelectorAll('.custom--leaflet-marker-focused')) {
-					prev_focused.classList.remove('custom--leaflet-marker-focused');
-				}
-				curr_focused.classList.add('custom--leaflet-marker-focused');
+			const radio = document.createElement('input');
+			radio.className = 'hidden peer';
+			radio.name = 'focused';
+			radio.type = 'radio';
+			const img = document.createElement('img');
+			img.className =
+				'bg-base-100/60 border-base-content/60 group-hover:border-base-content/100 peer-checked:border-base-content/100 m-0.5 aspect-square w-8! rounded-full border object-cover opacity-75 transition-all group-hover:border-2 group-hover:opacity-95 peer-checked:w-10! peer-checked:border-2 peer-checked:opacity-95';
+			img.src = piece.img;
+			const icon = new ElIcon({
+				className: 'flex! items-center justify-center group',
+				html: `${radio.outerHTML}${img.outerHTML}`,
+				tagName: 'label',
+				iconSize: [40, 40]
+			});
+			const marker = L.marker([piece.lat, piece.lng], { icon }).addTo(map);
+
+			marker.addEventListener('click', function () {
 				focused_id = id;
 			});
-			return marker;
-		}
-		for (const id in obj_id_piece) {
-			Marker(id).addTo(map);
+
+			marker.addTo(map);
 		}
 	});
 </script>
@@ -112,12 +103,12 @@
 		</section>
 		<p class="block w-max text-sm">99 results</p>
 	</section>
-	<div bind:this={map_el} class="aspect-[4/3] w-full"></div>
+	<fieldset bind:this={map_el} class="aspect-[4/3] w-full"></fieldset>
 	<div
 		class="divider before:bg-base-content/50 after:bg-base-content/50 mx-auto my-0 w-12 before:h-1.5 before:rounded-l-full after:h-1.5 after:rounded-r-full"
 	></div>
-	<section>
-		<article class="mb-3 flex items-center">
+	<article class="flex flex-wrap items-center">
+		{#if focused_piece}
 			<button
 				class="text-error w-1/8 grow"
 				ondragover={function (ev) {
@@ -130,17 +121,17 @@
 			</button>
 			<img
 				class="aspect-square w-1/4 grow object-contain"
-				alt="white cotton shirt"
+				alt={focused_piece.name}
 				draggable
 				ondragstart={function (ev) {
 					ev.dataTransfer!.setData('application/custom', ev.currentTarget.id);
 					ev.dataTransfer!.effectAllowed = 'link';
 				}}
-				src="https://i.ebayimg.com/thumbs/images/g/w30AAOSwyGxkD3V0/s-l1200.jpg"
+				src={focused_piece.img}
 			/>
 			<MaybeAuthA
 				class="text-success w-1/8 grow"
-				href={`${base}/delivery/a/options`}
+				href={`${base}/delivery/${focused_id}/options`}
 				ondragover={function (ev) {
 					ev.preventDefault();
 					ev.dataTransfer!.dropEffect = 'link';
@@ -152,18 +143,21 @@
 			>
 				<IconArrowRightBold height="100%" width="100%" />
 			</MaybeAuthA>
-		</article>
-		<p class="text-center font-bold">Swipe</p>
-	</section>
-	<label class="gap-x-space sticky mt-3 mr-6 ml-auto flex w-max items-center">
-		<HeartCheckbox />
-		<span>Liked Clothing</span>
-	</label>
+			<p class="mt-3 basis-full text-center font-bold">Swipe</p>
+			<div class="basis-full">
+				<label class="gap-x-space sticky mt-3 mr-6 ml-auto flex w-max items-center">
+					<HeartCheckbox />
+					<span>Liked Clothing</span>
+				</label>
+			</div>
+		{:else}
+			<button class="text-error/60 w-1/8 grow" disabled type="button">
+				<IconArrowLeftBold height="100%" width="100%" />
+			</button>
+			<img class="skeleton aspect-square w-1/4 grow" alt="choose a piece" src={blank_gif} />
+			<button class="text-success/60 w-1/8 grow" disabled type="button">
+				<IconArrowRightBold height="100%" width="100%" />
+			</button>
+		{/if}
+	</article>
 </main>
-
-<style>
-	:global(.custom--leaflet-marker-focused) {
-		background-color: color-mix(in oklab, var(--color-base-100) 60%, transparent);
-		border-width: 2px;
-	}
-</style>

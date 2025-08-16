@@ -2,6 +2,11 @@
 	import { building } from '$app/environment';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
+	import { pieces_store } from '$lib/stores/atom/pieces';
+
+	const id = $derived(building ? '' : page.params.id);
+	const searchParams = $derived(building ? '' : page.url.searchParams);
+	const piece = $derived(building ? undefined : $pieces_store[id]!);
 </script>
 
 <div class="mx-3 mt-6 flex flex-col gap-y-4">
@@ -10,7 +15,7 @@
 	</header>
 	<article class="card bg-base-300 p-4 shadow-sm">
 		<div class="card-body gap-0 p-0">
-			<p>Clothing: white cotton shirt</p>
+			<p>Clothing: <span class={{ 'skeleton w-[10ch]': !piece?.name }}>{piece?.name}</span></p>
 			<p class="text-sm">Length: 30 cm, Width: 20 cm, Height 15 cm</p>
 		</div>
 	</article>
@@ -32,10 +37,7 @@
 			<p>Location: Yio Chu Kang MRT</p>
 		</div>
 	</article>
-	<a
-		class="btn btn-primary mt-6 w-full"
-		href={`${base}/delivery/a/summary?${building ? '' : page.url.searchParams}`}
-	>
+	<a class="btn btn-primary mt-6 w-full" href={`${base}/delivery/${id}/summary?${searchParams}`}>
 		Confirm
 	</a>
 </div>

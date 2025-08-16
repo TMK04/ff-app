@@ -1,17 +1,21 @@
 <script lang="ts">
 	import type { EventHandler } from 'svelte/elements';
 
+	import { building } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { page } from '$app/state';
+
+	const id = $derived(building ? '' : page.params.id);
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
 			const form_data = new FormData(ev.currentTarget);
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			await goto(`${base}/delivery/a/pickup?${new URLSearchParams(form_data as any)}`);
+			await goto(`${base}/delivery/${id}/pickup?${new URLSearchParams(form_data as any)}`);
 		} catch (e) {
-			console.error(`/delivery/a/options/+page.svelte onsubmit`, e);
+			console.error(`/delivery/${id}/options/+page.svelte onsubmit`, e);
 		}
 	};
 </script>
