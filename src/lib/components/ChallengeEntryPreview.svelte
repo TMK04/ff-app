@@ -7,8 +7,8 @@
 	import ImgPfp from './ImgPfp.svelte';
 
 	import { type TChallengeEntry } from '$lib/stores/challenge';
-	import { me } from '$lib/stores/me';
-	import { users } from '$lib/stores/users';
+	import { me_store } from '$lib/stores/me';
+	import { users_store } from '$lib/stores/users';
 
 	type TProps = {
 		like_props: TLikeProps;
@@ -20,10 +20,10 @@
 
 <li class="flex w-xs grow flex-col">
 	<header class="mb-2 flex w-full gap-x-2">
-		<ImgPfp class="h-12" alt={$me.username} src={$users[$me.username].pfp} />
+		<ImgPfp class="h-12" alt={$me_store.username} src={$users_store[$me_store.username].pfp} />
 		<section class="flex grow flex-col justify-items-center gap-0.25">
 			<h1 class="h-lh font-bold">
-				{$me.username}
+				{$me_store.username}
 			</h1>
 			<div class="text-base-content/60 h-lh text-sm">just now</div>
 		</section>

@@ -4,7 +4,7 @@ export type TUsername = string;
 
 export const pfp_default = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg';
 
-export const users = persisted<{
+export const users_store = persisted<{
 	[K in TUsername]: {
 		email: string;
 		pass: string;

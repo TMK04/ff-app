@@ -2,7 +2,7 @@
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	import { base } from '$app/paths';
-	import { me } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/me';
 
 	type TProps = HTMLAnchorAttributes & Required<Pick<HTMLAnchorAttributes, 'children'>>;
 
@@ -16,4 +16,4 @@
 	});
 </script>
 
-<a href={$me.auth ? href : auth_href} {...rest}>{@render children()}</a>
+<a href={$me_store.auth ? href : auth_href} {...rest}>{@render children()}</a>

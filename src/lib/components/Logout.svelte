@@ -3,12 +3,12 @@
 
 	import type { MouseEventHandler } from 'svelte/elements';
 
-	import { me } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/me';
 
 	// TODO
 	const onclick: MouseEventHandler<HTMLButtonElement> = function () {
 		try {
-			$me.auth = false;
+			$me_store.auth = false;
 			// Relevant pages like /profile have $effect to redirect to /profile/auth
 		} catch (e) {
 			console.error('/profile/logout/+page.svelte onclick', e);

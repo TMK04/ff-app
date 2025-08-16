@@ -13,8 +13,8 @@
 		type TChallengeEntry,
 		type TChallengeEntryId
 	} from '$lib/stores/challenge';
-	import { me } from '$lib/stores/me';
-	import { users } from '$lib/stores/users';
+	import { me_store } from '$lib/stores/me';
+	import { users_store } from '$lib/stores/users';
 
 	type TProps = {
 		id: TChallengeEntryId;
@@ -23,21 +23,21 @@
 	const { id, comment_count, img, like_username_arr, posted_ago, title, username }: TProps =
 		$props();
 
-	const like_checked = $derived(like_username_arr.includes($me.username));
+	const like_checked = $derived(like_username_arr.includes($me_store.username));
 	const like_oninput: FormEventHandler<HTMLInputElement> = function () {
 		try {
 			challenge_store.update(function (challenge) {
 				try {
 					const like_index = challenge[id].like_username_arr.findIndex(function (like_username) {
-						return like_username === $me.username;
+						return like_username === $me_store.username;
 					});
 					if (like_index === -1) {
 						let like_count = 0;
 						for (const id in challenge) {
-							if (challenge[id].like_username_arr.includes($me.username)) like_count += 1;
+							if (challenge[id].like_username_arr.includes($me_store.username)) like_count += 1;
 						}
 						// Max 3 likes
-						if (like_count < 3) challenge[id].like_username_arr.push($me.username);
+						if (like_count < 3) challenge[id].like_username_arr.push($me_store.username);
 					} else {
 						challenge[id].like_username_arr.splice(like_index, 1);
 					}
@@ -55,7 +55,7 @@
 
 <li class="flex w-xs grow flex-col">
 	<header class="mb-2 flex w-full gap-x-2">
-		<ImgPfp class="h-12" alt={username} src={$users[username].pfp} />
+		<ImgPfp class="h-12" alt={username} src={$users_store[username].pfp} />
 		<section class="flex grow flex-col justify-items-center gap-0.25">
 			<h1 class="h-lh font-bold">
 				{username}

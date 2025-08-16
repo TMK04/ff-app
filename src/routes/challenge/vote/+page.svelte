@@ -3,13 +3,13 @@
 	import Hearts from '$lib/components/Hearts.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 	import { challenge_store } from '$lib/stores/challenge';
-	import { me } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/me';
 
 	const hearts_used = $derived.by(function () {
 		let used = 0;
 		for (const challenge_entry_id in $challenge_store) {
 			const challenge_entry = $challenge_store[challenge_entry_id];
-			if (challenge_entry.like_username_arr.includes($me.username)) {
+			if (challenge_entry.like_username_arr.includes($me_store.username)) {
 				used += 1;
 			}
 		}

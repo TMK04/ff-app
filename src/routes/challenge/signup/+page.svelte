@@ -6,7 +6,7 @@
 	import ChallengeEntryPreview from '$lib/components/ChallengeEntryPreview.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
 	import { challenge_store, ChallengeId } from '$lib/stores/challenge';
-	import { me } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/me';
 
 	let img_input_el: HTMLInputElement;
 	let file_name = $state('');
@@ -58,10 +58,10 @@
 					challenge[id] = {
 						comment_count: 0,
 						img,
-						like_username_arr: like_checked ? [$me.username] : [],
+						like_username_arr: like_checked ? [$me_store.username] : [],
 						posted_ago: 'just now',
 						title,
-						username: $me.username
+						username: $me_store.username
 					};
 				} catch (e) {
 					console.error('/challenge/signup/+page.svelte onsubmit update', e);

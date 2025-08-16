@@ -25,7 +25,7 @@
 	<br />
 	<p>
 		At Fashion Forward, we're on a mission to reduce textile waste and empower a new generation to
-		take a stand for the planet — one outfit at a time.
+		take a stand for the planet — one outfit at a time_store.
 	</p>
 	<br />
 	<img

@@ -5,12 +5,12 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
-	import { me } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/me';
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
-			$me.auth = true;
+			$me_store.auth = true;
 			const redirect = page.url.searchParams.get('redirect');
 			await goto(redirect || `${base}/`);
 		} catch (e) {

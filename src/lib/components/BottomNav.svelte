@@ -7,7 +7,7 @@
 	import IconLightbulbOnOutline from '~icons/mdi/lightbulb-on-outline';
 
 	import BottomNavTab from '$lib/components/BottomNavTab.svelte';
-	import { me } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/me';
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
@@ -20,7 +20,7 @@
 	<BottomNavTab Icon={IconHanger} path="explore">Explore</BottomNavTab>
 	<BottomNavTab Icon={IconLightbulbOnOutline} path="learn">Learn</BottomNavTab>
 	<BottomNavTab
-		Icon={$me.auth ? IconAccount : IconAccountKey}
-		path={$me.auth ? 'profile' : 'profile/auth'}>Profile</BottomNavTab
+		Icon={$me_store.auth ? IconAccount : IconAccountKey}
+		path={$me_store.auth ? 'profile' : 'profile/auth'}>Profile</BottomNavTab
 	>
 </nav>
