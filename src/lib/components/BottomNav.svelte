@@ -7,7 +7,7 @@
 	import IconLightbulbOnOutline from '~icons/mdi/lightbulb-on-outline';
 
 	import BottomNavTab from '$lib/components/BottomNavTab.svelte';
-	import { me_store } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/atom/me';
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->

@@ -5,7 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
-	import { me_store } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/atom/me';
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {

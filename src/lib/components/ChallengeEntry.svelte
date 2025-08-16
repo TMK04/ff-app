@@ -12,9 +12,9 @@
 		challenge_store,
 		type TChallengeEntry,
 		type TChallengeEntryId
-	} from '$lib/stores/challenge';
-	import { me_store } from '$lib/stores/me';
-	import { users_store } from '$lib/stores/users';
+	} from '$lib/stores/atom/challenge';
+	import { me_store } from '$lib/stores/atom/me';
+	import { users_store } from '$lib/stores/atom/users';
 
 	type TProps = {
 		id: TChallengeEntryId;

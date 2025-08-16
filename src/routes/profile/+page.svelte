@@ -6,7 +6,7 @@
 	import Logout from '$lib/components/Logout.svelte';
 	import PendingExchanges from '$lib/components/PendingExchanges.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
-	import { me_store } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/atom/me';
 
 	$effect(function () {
 		if (!$me_store.auth) {

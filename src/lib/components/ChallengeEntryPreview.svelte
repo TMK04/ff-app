@@ -6,9 +6,9 @@
 	import ImgMaybeSkeleton from './ImgMaybeSkeleton.svelte';
 	import ImgPfp from './ImgPfp.svelte';
 
-	import { type TChallengeEntry } from '$lib/stores/challenge';
-	import { me_store } from '$lib/stores/me';
-	import { users_store } from '$lib/stores/users';
+	import { type TChallengeEntry } from '$lib/stores/atom/challenge';
+	import { me_store } from '$lib/stores/atom/me';
+	import { users_store } from '$lib/stores/atom/users';
 
 	type TProps = {
 		like_props: TLikeProps;

@@ -3,7 +3,7 @@
 
 	import type { MouseEventHandler } from 'svelte/elements';
 
-	import { me_store } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/atom/me';
 
 	// TODO
 	const onclick: MouseEventHandler<HTMLButtonElement> = function () {

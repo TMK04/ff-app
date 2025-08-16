@@ -5,8 +5,8 @@
 
 	import ChallengeEntryPreview from '$lib/components/ChallengeEntryPreview.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
-	import { challenge_store, ChallengeId } from '$lib/stores/challenge';
-	import { me_store } from '$lib/stores/me';
+	import { challenge_store, ChallengeId } from '$lib/stores/atom/challenge';
+	import { me_store } from '$lib/stores/atom/me';
 
 	let img_input_el: HTMLInputElement;
 	let file_name = $state('');

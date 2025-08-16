@@ -2,7 +2,7 @@
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	import { base } from '$app/paths';
-	import { me_store } from '$lib/stores/me';
+	import { me_store } from '$lib/stores/atom/me';
 
 	type TProps = HTMLAnchorAttributes & Required<Pick<HTMLAnchorAttributes, 'children'>>;
 

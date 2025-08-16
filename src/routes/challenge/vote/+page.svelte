@@ -2,8 +2,8 @@
 	import ChallengeEntry from '$lib/components/ChallengeEntry.svelte';
 	import Hearts from '$lib/components/Hearts.svelte';
 	import TopNav from '$lib/components/TopNav.svelte';
-	import { challenge_store } from '$lib/stores/challenge';
-	import { me_store } from '$lib/stores/me';
+	import { challenge_store } from '$lib/stores/atom/challenge';
+	import { me_store } from '$lib/stores/atom/me';
 
 	const hearts_used = $derived.by(function () {
 		let used = 0;
