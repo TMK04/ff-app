@@ -7,18 +7,43 @@
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
 	import IconSortVariant from '~icons/mdi/sort-variant';
 
-	import type { Circle, LatLngExpression } from 'leaflet';
+	import type { Circle, LatLngLiteral } from 'leaflet';
 
 	import { base } from '$app/paths';
+	import { EarthDistance } from '$lib/EarthDistance';
+	import { SinglyCircularLinkedList } from '$lib/LinkedList';
 	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
 	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
 	import { blank_gif } from '$lib/skeleton';
 	import { pieces_store, type TPiece, type TPieceId } from '$lib/stores/atom/pieces';
 
-	let filter_within3km_checked = $state(true);
+	const center_latlng: LatLngLiteral = { lat: 1.3499039, lng: 103.8728901 };
 
-	const center_latlng: LatLngExpression = [1.3499039, 103.8728901];
+	const distance_3km = 3000;
+	let filter_within3km_checked = $state(true);
+	const filtered_pieces = $derived.by(function () {
+		type TLinkedListPiece = TPiece & { id: TPieceId; distance: number };
+		const arr: TLinkedListPiece[] = [];
+
+		for (const id in $pieces_store) {
+			const piece = $pieces_store[id];
+			const distance = EarthDistance(center_latlng, piece);
+			if (filter_within3km_checked && distance > distance_3km) continue;
+			arr.push({ id, distance, ...piece });
+		}
+
+		const linked_list = new SinglyCircularLinkedList<TLinkedListPiece>();
+		if (arr.length === 0) return linked_list;
+
+		arr.sort(function (a, b) {
+			return a.distance - b.distance;
+		});
+		for (const piece of arr) {
+			linked_list.insert(piece.id, piece);
+		}
+		return linked_list;
+	});
 
 	const map_id = 'map';
 	let filter_within3km_circle = $state<Circle | undefined>(undefined);
@@ -46,7 +71,6 @@
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		const distance_3km = 3000;
 		filter_within3km_circle = L.circle(center_latlng, {
 			className: 'custom--leaflet-circle',
 			color: 'var(--color-primary)',
@@ -139,6 +163,12 @@
 				ondragover={function (ev) {
 					ev.preventDefault();
 					ev.dataTransfer!.dropEffect = 'link';
+				}}
+				ondrop={function (ev) {
+					ev.preventDefault();
+					if (!focused_id) return;
+					const focused_node = filtered_pieces.obj_id_node[focused_id] || filtered_pieces.head;
+					focused_id = focused_node.next.data.id;
 				}}
 				type="button"
 			>
