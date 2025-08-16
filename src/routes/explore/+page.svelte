@@ -27,6 +27,14 @@
 	const focused_piece = $derived<undefined | TPiece>(
 		focused_id ? $pieces_store[focused_id] : undefined
 	);
+	const searchParams = $derived.by(function () {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
+		const searchParams = new URLSearchParams();
+		if (focused_id) {
+			searchParams.set('id', focused_id);
+		}
+		return searchParams;
+	});
 
 	onMount(async function () {
 		const L = await import('leaflet');
@@ -148,7 +156,7 @@
 			/>
 			<MaybeAuthA
 				class="text-success w-1/8 grow"
-				href={`${base}/delivery/${focused_id}/options`}
+				href={`${base}/delivery/options?${searchParams}`}
 				ondragover={function (ev) {
 					ev.preventDefault();
 					ev.dataTransfer!.dropEffect = 'link';

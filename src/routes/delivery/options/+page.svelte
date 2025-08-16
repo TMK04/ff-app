@@ -6,16 +6,20 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 
-	const id = $derived(building ? '' : page.params.id);
+	const page_searchParams = $derived(building ? new URLSearchParams() : page.url.searchParams);
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
-			const form_data = new FormData(ev.currentTarget);
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			await goto(`${base}/delivery/${id}/pickup?${new URLSearchParams(form_data as any)}`);
+			const form_data = new FormData(ev.currentTarget) as any;
+			const searchParams = new URLSearchParams([
+				...form_data.entries(),
+				...page_searchParams.entries()
+			]);
+			await goto(`${base}/delivery/pickup?${searchParams}`);
 		} catch (e) {
-			console.error(`/delivery/${id}/options/+page.svelte onsubmit`, e);
+			console.error(`/delivery/options/+page.svelte onsubmit`, e);
 		}
 	};
 </script>

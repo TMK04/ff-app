@@ -4,9 +4,9 @@
 	import { page } from '$app/state';
 	import { pieces_store } from '$lib/stores/atom/pieces';
 
-	const id = $derived(building ? '' : page.params.id);
-	const searchParams = $derived(building ? '' : page.url.searchParams);
-	const piece = $derived(building ? undefined : $pieces_store[id]!);
+	const searchParams = $derived(building ? new URLSearchParams() : page.url.searchParams);
+	const id = $derived(building ? undefined : searchParams.get('id'));
+	const piece = $derived(id ? $pieces_store[id] : undefined);
 </script>
 
 <div class="mx-3 mt-6 flex flex-col gap-y-4">
@@ -37,7 +37,7 @@
 			<p>Location: Yio Chu Kang MRT</p>
 		</div>
 	</article>
-	<a class="btn btn-primary mt-6 w-full" href={`${base}/delivery/${id}/summary?${searchParams}`}>
+	<a class="btn btn-primary mt-6 w-full" href={`${base}/delivery/summary?${searchParams}`}>
 		Confirm
 	</a>
 </div>
