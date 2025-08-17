@@ -22,10 +22,10 @@
 	<article class="card border-base-content/30 border-2 p-4 shadow-sm">
 		<h3 class="card-title">Swapper Information</h3>
 		<div class="card-body gap-0 p-0">
-			<p>Name: Alex Johnson</p>
+			<p>Name: {piece?.username}</p>
 			<p>Preferred Meeting location: Amk Hub</p>
 			<div class="card-actions mt-4">
-				<button class="btn btn-primary w-full">Chat with him here</button>
+				<button class="btn btn-primary w-full">Chat with them here</button>
 			</div>
 		</div>
 	</article>
