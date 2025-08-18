@@ -7,17 +7,25 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
+	import { email_regex } from '$lib/regex/email';
+	import { users_store } from '$lib/stores/atom/users';
 
 	const onsubmit: EventHandler<SubmitEvent, HTMLFormElement> = async function (ev) {
 		try {
 			ev.preventDefault();
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const form_data = new FormData(ev.currentTarget) as any;
-			const params = new URLSearchParams([
-				...form_data.entries(),
-				...page.url.searchParams.entries()
-			]);
-			await goto(`${base}/profile/auth/login?${params}`);
+			const form_data = new FormData(ev.currentTarget);
+			const user = form_data.get('user')!.toString();
+
+			for (const store_username in $users_store) {
+				if (user === store_username || user === $users_store[store_username].email) {
+					page.url.searchParams.set('user', user);
+					await goto(`${base}/profile/auth/login?${page.url.searchParams}`);
+					return;
+				}
+			}
+
+			page.url.searchParams.set(email_regex.test(user) ? 'email' : 'username', user);
+			await goto(`${base}/profile/auth/signup?${page.url.searchParams}`);
 		} catch (e) {
 			console.error('/profile/auth/+page.svelte onsubmit', e);
 		}
@@ -29,16 +37,15 @@
 		<label class="block">
 			<h2 class="mb-4 font-bold">Enter your email to continue</h2>
 			<input
-				name="email"
+				name="user"
 				class="input validator w-full"
-				autocomplete="email webauthn"
+				autocomplete="username webauthn"
 				placeholder="email@domain.com"
 				required
-				type="email"
+				type="text"
 				value="janedoe@mail.com"
 			/>
 		</label>
-		<!-- TODO: auth -->
 		<button class="btn btn-neutral mt-3 w-full" type="submit">Continue</button>
 	</form>
 
