@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import IconArrowLeftBold from '~icons/mdi/arrow-left-bold';
-	import IconArrowRightBold from '~icons/mdi/arrow-right-bold';
 	import IconClose from '~icons/mdi/close';
 	import IconFilter from '~icons/mdi/filter';
 	import IconMapMarkerDistance from '~icons/mdi/map-marker-distance';
@@ -12,10 +10,9 @@
 	import { base } from '$app/paths';
 	import { EarthDistance } from '$lib/EarthDistance';
 	import { SinglyCircularLinkedList } from '$lib/LinkedList';
-	import HeartCheckbox from '$lib/components/HeartCheckbox.svelte';
-	import MaybeAuthA from '$lib/components/MaybeAuthA.svelte';
+	import ExploreFocused from '$lib/components/ExploreFocused.svelte';
 	import TopSearch from '$lib/components/TopSearch.svelte';
-	import { blank_gif, latlng_serangoon } from '$lib/skeleton';
+	import { latlng_serangoon } from '$lib/skeleton';
 	import { pieces_store, type TPiece, type TPieceId } from '$lib/stores/atom/pieces';
 
 	const center_latlng: LatLngLiteral = latlng_serangoon;
@@ -49,17 +46,6 @@
 	let filter_within3km_circle = $state<Circle | undefined>(undefined);
 
 	let focused_id = $state<TPieceId | undefined>(undefined);
-	const focused_piece = $derived<undefined | TPiece>(
-		focused_id ? $pieces_store[focused_id] : undefined
-	);
-	const searchParams = $derived.by(function () {
-		// eslint-disable-next-line svelte/prefer-svelte-reactivity
-		const searchParams = new URLSearchParams();
-		if (focused_id) {
-			searchParams.set('id', focused_id);
-		}
-		return searchParams;
-	});
 
 	onMount(async function () {
 		const L = await import('leaflet');
@@ -152,68 +138,15 @@
 	<div
 		class="divider before:bg-base-content/50 after:bg-base-content/50 mx-auto my-0 w-12 before:h-1.5 before:rounded-l-full after:h-1.5 after:rounded-r-full"
 	></div>
-	<article class="flex flex-wrap items-center">
-		{#if focused_piece}
-			<button
-				class="text-error w-1/8 grow"
-				ondragover={function (ev) {
-					ev.preventDefault();
-					ev.dataTransfer!.dropEffect = 'link';
-				}}
-				ondrop={function (ev) {
-					ev.preventDefault();
-					if (!focused_id) return;
-					const focused_node = filtered_pieces.obj_id_node[focused_id] || filtered_pieces.head;
-					focused_id = focused_node.next.data.id;
-				}}
-				type="button"
-			>
-				<IconArrowLeftBold height="100%" width="100%" />
-			</button>
-			<img
-				class="aspect-square w-1/4 grow object-contain"
-				alt={focused_piece.name}
-				draggable
-				ondragstart={function (ev) {
-					ev.dataTransfer!.setData('application/custom', ev.currentTarget.id);
-					ev.dataTransfer!.effectAllowed = 'link';
-				}}
-				src={focused_piece.img}
-			/>
-			<MaybeAuthA
-				class="text-success w-1/8 grow"
-				href={`${base}/delivery/options?${searchParams}`}
-				ondragover={function (ev) {
-					ev.preventDefault();
-					ev.dataTransfer!.dropEffect = 'link';
-				}}
-				ondrop={async function (ev) {
-					ev.preventDefault();
-					ev.currentTarget.click();
-				}}
-			>
-				<IconArrowRightBold height="100%" width="100%" />
-			</MaybeAuthA>
-			<p class="gap-space mt-3 flex basis-full flex-col items-center font-bold">
-				<span>Swipe <span class="text-error">left</span> to see next,</span>
-				<span><span class="text-success">right</span> to exchange</span>
-			</p>
-			<div class="basis-full">
-				<label class="gap-x-space sticky mt-3 mr-6 ml-auto flex w-max items-center">
-					<HeartCheckbox />
-					<span>Liked Clothing</span>
-				</label>
-			</div>
-		{:else}
-			<button class="text-error/60 w-1/8 grow" disabled type="button">
-				<IconArrowLeftBold height="100%" width="100%" />
-			</button>
-			<img class="skeleton aspect-square w-1/4 grow" alt="choose a piece" src={blank_gif} />
-			<button class="text-success/60 w-1/8 grow" disabled type="button">
-				<IconArrowRightBold height="100%" width="100%" />
-			</button>
-		{/if}
-	</article>
+	<ExploreFocused
+		id={focused_id}
+		left_ondrop={function (ev) {
+			ev.preventDefault();
+			if (!focused_id) return;
+			const focused_node = filtered_pieces.obj_id_node[focused_id] || filtered_pieces.head;
+			focused_id = focused_node.next.data.id;
+		}}
+	/>
 </main>
 <footer class="mt-6 flex flex-col items-center">
 	<a class="btn btn-primary" href={`${base}/profile/piece/list`}>List a new piece</a>
