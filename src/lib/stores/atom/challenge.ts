@@ -22,20 +22,28 @@ export const challenge_store = persisted<{
 	[K in TChallengeEntryId]: TChallengeEntry;
 }>('custom__challenge', {
 	a: {
-		comment_count: 0,
+		comment_count: 1,
+		img: 'https://i.pinimg.com/736x/2b/d3/cf/2bd3cfdb4e32baf3087a68ea4b531012.jpg',
+		like_username_arr: ['Daniel'],
+		posted_ago: '3 mins ago',
+		title: 'Daniel',
+		username: 'Daniel'
+	},
+	b: {
+		comment_count: 4,
 		img: 'https://media.istockphoto.com/id/1205018922/photo/fashionable-young-woman-is-crossing-the-street.jpg?s=612x612&w=0&k=20&c=e8-xIEtnjsocwIhMMjMXGxdyXYJ7avVBzeed2M5TSKM=',
 		like_username_arr: ['Daniel', 'Helen'],
 		posted_ago: '2 hrs ago',
 		title: 'Street Fashion',
 		username: 'Helen'
 	},
-	b: {
+	c: {
 		comment_count: 2,
-		img: 'https://i.pinimg.com/736x/2b/d3/cf/2bd3cfdb4e32baf3087a68ea4b531012.jpg',
-		like_username_arr: ['Daniel'],
+		img: 'https://i.pinimg.com/736x/10/66/e8/1066e88f7b6efa11884dd3d20dc809ff.jpg',
+		like_username_arr: ['Alex Johnson', 'Helen'],
 		posted_ago: '3 mins ago',
-		title: 'Daniel',
-		username: 'Daniel'
+		title: 'Festival Outfit',
+		username: 'Alex Johnson'
 	}
 });
 
